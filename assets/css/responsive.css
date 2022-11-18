@@ -1,0 +1,328 @@
+/*============================================
+
+[Table of content]
+
+1. Large devices (less than 1200px)
+2. Large tablets (less than  992px)
+3. Medium devices (less than  768px)
+4. Small devices (less than  576px)
+5. Extra Small devices (less than  480px)
+
+============================================*/
+
+@media (min-width: 1370px) {
+    .loginform-block::after {
+        background-image: url(../img/login_right_side_bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 140px;
+        height: 500px;
+        z-index: -1;
+    }
+    .loginform-block::before {
+        background-image: url(../img/login_left_side_bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        left: 0px;
+        bottom: -100px;
+        width: 200px;
+        height: 500px;
+        z-index: -1;
+    }
+}
+
+
+
+@media (min-width: 1024px) {
+    .right-side-bg1::after {
+        background-image: url(../img/right_side_bg1.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 155px;
+        height: 420px;
+        z-index: -1;
+    }
+    .left-side-bg1::after {
+        background-image: url(../img/left_side_bg1.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 20%;
+        width: 220px;
+        height: 900px;
+        z-index: -1;
+    }
+
+    .right-side-bg2::after {
+        background-image: url(../img/right_side_bg2.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 140px;
+        height: 550px;
+        z-index: -1;
+    }
+    .left-side-bg2::after {
+        background-image: url(../img/left_side_bg2.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 0;
+        width: 150px;
+        height: 705px;
+        z-index: -1;
+    }
+    .loginform-block::after {
+        background-image: url(../img/login_right_side_bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 140px;
+        height: 500px;
+        z-index: -1;
+    }
+    .loginform-block::before {
+        background-image: url(../img/login_left_side_bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        left: 0px;
+        bottom: -100px;
+        width: 160px;
+        height: 400px;
+        z-index: -1;
+    }
+    .blog-wrap::after {
+        background-image: url(../img/blog_top_leftbg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right top;
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: -18%;
+        width: 350px;
+        height: 320px;
+        z-index: -1;
+    }
+    .blog-wrap::before {
+        background-image: url(../img/blog_top_rightbg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 100px;
+        width: 160px;
+        height: 400px;
+        z-index: -1;
+    }
+    .single-blog-wrap::after {
+        background-image: url(../img/singleblog_top_leftbg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right top;
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 180px;
+        height: 200px;
+        z-index: -1;
+    }
+    .single-blog-wrap::before {
+        background-image: url(../img/singleblog_top_rightbg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 100px;
+        width: 160px;
+        height: 400px;
+        z-index: -1;
+    }
+    .navigation-topleft-bg::after {
+        background-image: url(../img/navigation-topleft-bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right top;
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 260px;
+        height: 480px;
+        z-index: -1;
+    }
+    .navigation-topright-bg::before {
+        background-image: url(../img/navigation-topright-bg.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left top;
+        content: "";
+        position: absolute;
+        left: 0px;
+        top: 100px;
+        width: 200px;
+        height: 520px;
+        z-index: -1;
+    }
+    .additional-information-section .navigation-topleft-bg::after {
+        top: 30%;
+    }
+}
+@media (min-width: 992px) and (max-width: 1600px) {
+
+}
+
+@media (min-width: 1401px) and (max-width: 3000px) {
+}
+@media (min-width: 992px) {
+    /* .header-nav .header-bottom-nav .navbar-nav {
+        display: block;
+        width: 100%;
+    }
+    .header-nav .header-bottom-nav .navbar-nav .nav-item {
+        float: left;
+    } */
+    .header-bottom-nav .navbar-nav .nav-link {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+    .header-nav .navbar-expand-lg .navbar-collapse {
+        justify-content: flex-end;
+    }
+    .header-nav .navbar-nav {
+        justify-content: flex-end;
+    }
+}
+/* 1. Large devices (less than 1200px) */
+@media (max-width: 1199.98px) {
+    .header-nav nav .header-nav-box::after {
+        right: -45px;
+    }
+    .header-nav nav .header-nav-box {
+        border-radius: 0 0 100px 200px;
+    }
+}
+
+/* 2. Large tablets (less than  992px) */
+@media (max-width: 991px) {
+    .navbar-brand {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .header-nav nav .header-nav-box {
+        border-radius: 0 0 40px 40px;
+    }
+    .header-bottom-nav {
+        padding: 5px 15px 20px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: .3rem;
+        padding-left: .3rem;
+    }
+    .header-nav nav .header-nav-box::before {
+        content: none;
+    }
+    .header-nav nav .header-nav-box::after {
+        content: none;
+    }
+    .homesignup-block:before {
+        content: none;
+    }
+    .lgoin-heading h1 {
+        font-size: 2.5rem;
+        line-height: 3.5rem;
+    }
+}
+
+@media  (min-width: 768px) and (max-width: 992px) {
+}
+
+
+
+/* 3. Medium devices (less than  768px) */
+@media (max-width: 767.98px) {}
+
+/* 5. Extra Small devices (less than  568px) */
+@media (max-width: 567.98px) {
+    .header-top-nav::before {
+        content: none;
+    }
+    .navbar-brand {
+        width: 240px;
+    }
+    .navbar-brand img {
+        width: 100%;
+    }
+    .space-box {
+        display: none;
+    }
+    .signup-box3-block:last-child .signup-box3 {
+        margin-bottom: 0px;
+    }
+    .signup-box3 {
+        margin-bottom: 25px;
+    }
+    .form-search {
+        margin-bottom: 15px;
+    }
+    
+    .more-4box-section .section-heading h2 {
+        font-size: 1.1rem;
+    }
+    .more-4box-section .section-heading h2 span {
+        margin-left: 0.5rem;
+    }
+    .more-4box-section .section-heading a:first-child {
+        padding-left: 0;
+    }
+    .more-4box-section .section-heading a {
+        font-size: 1.1rem;
+        padding: 0 0.5rem;
+        line-height: 1.7rem;
+    }
+    .more-4box-section .section-heading a:before {
+        right: -5px;
+    }
+}
+@media (max-width: 479.98px) {
+    .navbar-light .navbar-nav .header-login .nav-link {
+        padding: 7px 20px;
+    }
+}
+
+@media (max-width: 379.98px) {}
