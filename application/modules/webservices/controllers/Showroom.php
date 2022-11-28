@@ -36,6 +36,55 @@ class Showroom extends CI_Controller
 		
 	}
 
+
+	public function get_companies()
+	{
+		$arg = array();
+		$data = $this->db->get('manage_company_list')->result_array();
+        if(!empty($data)){
+        	foreach ($data as $key => $value) {
+        		$data[$key]['showrooms'] =$this->db->where('company_id',$value['id'])->get('manage_showroom_list')->result_array();
+        	}
+        }
+      	if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "images listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
+	public function get_companies_byid($id)
+	{
+		$arg = array();
+		$data = $this->db->where('id',$id)->get('manage_company_list')->row_array();
+        $data['showrooms'] =$this->db->where('company_id',$data['id'])->get('manage_showroom_list')->row_array();
+       	if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "images listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
 	 
 	public function get_360image($id)
 	{
