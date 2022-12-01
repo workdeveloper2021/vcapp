@@ -35,7 +35,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
                 <br><br>
-
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <label for="inputName" class="control-label">Showroom Information
+                      </label>
+                        <textarea name="information" class="form-control" id="inputName" value="" required></textarea>
+                    </div>
+                  </div>
+                </div>
+                <br><br>
 
 
                 <div class="row">

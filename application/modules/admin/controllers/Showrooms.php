@@ -231,6 +231,7 @@ class Showrooms extends My_Controller {
         $is_submit = $this->input->post('is_submit');
         if(isset($is_submit) && $is_submit == 1){
             $this->form_validation->set_rules('updatename', 'update company name', 'required');
+            
             // $this->form_validation->set_rules('updateuserpic', 'update thumbnail', 'required');
             // $this->form_validation->set_rules('update360pic', 'update 360 image', 'required');
             // $this->form_validation->set_rules('updatevideo', 'update background video', 'required');
@@ -333,6 +334,7 @@ class Showrooms extends My_Controller {
                 }
 
                 $updatedata['showroom_name'] = $updatename;
+                $updatedata['information'] = $information;
                 $updatedata['thumbnail'] = $img_name;
                 $updatedata['img_360'] = $img_360_name;
                 $updatedata['video_url'] = $vid_name;
@@ -426,6 +428,7 @@ class Showrooms extends My_Controller {
 
                 $updatedata['company_id'] = $comid;
                 $updatedata['showroom_name'] = $updatename;
+                $updatedata['information'] = $information;
                 $updatedata['thumbnail'] = $updateuserpic;
                 // $updatedata['img_360'] = $update360pic;
                 $updatedata['video_url'] = $vid_name;
