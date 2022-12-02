@@ -834,11 +834,11 @@ class Showrooms extends My_Controller {
                     $userdata=$this->dynamic_model->getdatafromtable('companys_showroom_entered_count',$where); 
 
                   
-                    $profile_url = base_url('admin/showrooms/showroomprofile/').$login_user_id;
+                    $profile_url = base_url('admin/showrooms/deleteImage/').$login_user_id;
                                        
                     $actionContent = '';
                     // if(check_permission(EDIT,"user_list")==1){
-                    $actionContent .='<a href="'.$profile_url.'" title="Edit" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-edit"></i></a> '; 
+                    $actionContent .='<a href="'.$profile_url.'" title="Delete" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-trash"></i></a> '; 
                   
                      // }
                     $recordListing[$i][3]= $actionContent;
@@ -855,6 +855,17 @@ class Showrooms extends My_Controller {
                 
         echo '{"draw":'.$draw.',"recordsTotal":'.$totalRecord.',"recordsFiltered":'.$totalRecord.',"data":'.$final_data.'}';
     }
+
+
+    public function deleteImage($user_id=''){
+        $uid =  decode($user_id);
+        if(!empty($user_id) && !empty($uid)){
+            $where2 = "id ='".$uid."'";
+            $userdata2=$this->dynamic_model->deletedata('showroom_360_image',$where2); 
+            echo $userdata2;
+        }
+       redirect($_SERVER["HTTP_REFERER"]);
+    }  
 
 
 
