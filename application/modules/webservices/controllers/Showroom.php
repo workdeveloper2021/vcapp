@@ -14,7 +14,7 @@ ini_set('max_execution_time', 0);
  * ********************************************************** */
 
 
-class Showroom extends MY_Controller
+class Showroom extends CI_Controller
 {
 
 	public function __construct()
