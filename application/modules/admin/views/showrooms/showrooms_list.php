@@ -42,7 +42,7 @@
           <?php if ($this->session->flashdata('updateerror') != '') {
               echo '<h6 class="'.$this->session->flashdata('updateclass').'">'.$this->session->flashdata('updateerror').'</h6>';
             } ?>
-        <table id="userList" class="table table-bordered">
+        <table id="userList" class="table table-bordered table-responsive">
             <thead>
             <tr>
               <th nowrap=""> <input type="checkbox" name="checkAll[]" id="checkall"></th>
