@@ -80,70 +80,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <br><br>
                 
-                <div class="col-md-12">
-                  <label for="inputName1" class="col-sm-3 control-label">Descripition</label>
-                  <textarea class="form-control" name="description1" placeholder="Write Descripition"></textarea>
-                </div>
-                <br>
-                <div class="row">
-                      <div class="col-md-6">
-                          <label for="inputName1" class="col-sm-4 control-label">
-                          Retailer </label>
-                          <input type="text" name="retailer11"  class="form-control" id="inputName1" multiple  / >
-                      </div>
-
-                      <div class="col-md-6">
-                          <label for="inputName1" class="col-sm-4 control-label">Retailer Image</label>
-                          <input type="file"  name="retailer21" class="form-control"  / >
-                      </div>
-                  </div><br>
-                <div class="row">
-                    <div class="col-md-12">
-                      <label for="inputName1" class="col-sm-3 control-label"><?php echo $this->lang->line('tb_showroom_img_360'); ?></label>
-                       <input type="hidden" name="360nos[]" value="1">
-                     
-                      <input type="file" style="width:247px" name="update360pic[]" required class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
-                      <br>
-                    </div>
-                    <div class="col-md-12">
-                       <div class="row showcod1">
-                          <div class="col-sm-6">
-                            <input type="hidden" name="codeno1[]" value="0" >
-                              X : <input type="number" step="0.00000001"  name="xval1[]" style="width:20%">
-                              Y : <input type="number" step="0.00000001"  name="yval1[]" style="width:20%">
-                              Z : <input type="number" step="0.00000001"  name="zval1[]" style="width:20%">
-                          </div>
-
-                          <div class="col-sm-6">
-                              <textarea style="width: 1200px;" name="coordinate_360_info1[]" class="form-control" placeholder="Info text"></textarea>
-                          </div>
-                          <div class="col-md-4">
-                              <label for="inputName1" class="control-label">Images</label>
-                              <input type="file" style="width:247px" name="image10[]"  class="form-control" id="inputName1" multiple  accept="image/x-png,image/gif,image/jpeg" / >
-                          </div>
-
-                          <div class="col-md-4">
-                              <label for="inputName1" class="control-label">3D Modals</label>
-                              <input type="file" style="width:247px" name="3dmodals10[]"  class="form-control" id="inputName1" multiple / >
-                          </div>
-                          <div class="col-md-12" style="text-align:right;">
-                        <input type="button" class="btn btn-success addmore" att="1" style="height: min-content;" onclick="add_coodi(1);"  value="Add More">
-                          <div>
-                        
-                      </div>
-                    </div>
-                   
-                  </div>                
-                </div>
-                
-                  
-                   <button style="margin: 10px 0px;" class="btn btn-success" type="button"  onclick="education_fields();">Add More</button>
-                   
-                </div>
-
-                <div class="row" id="education_fields">
-          
-                </div>
                 
                   <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-12">
@@ -160,35 +96,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </section>
 
-<script type="text/javascript">
-var room = 1;
-function education_fields() {
- 
-    room++;
-    var objTo = document.getElementById('education_fields')
-    var divtest = document.createElement("div");
-  divtest.setAttribute("class", "col-md-12 form-group removeclass"+room);
-  var rdiv = 'removeclass'+room;
-    divtest.innerHTML = '<br><div class="col-md-12"> <label for="inputName1" class="col-sm-3 control-label">Descripition</label> <textarea class="form-control" name="description'+ room +'" placeholder="Write Descripition"></textarea> </div><br> <div class="row"> <div class="col-md-6"> <label for="inputName1" class="col-sm-4 control-label"> Retailer </label> <input type="text" name="retailer1'+ room +'" class="form-control" id="inputName1" multiple / > </div> <div class="col-md-6"> <label for="inputName1" class="col-sm-4 control-label">Retailer Image</label> <input type="file" name="retailer2'+ room +'" class="form-control" / > </div> </div><br><div class="col-md-12"><label for="inputName1" class="col-sm-3 control-label"><?php echo $this->lang->line('tb_showroom_img_360'); ?></label><input type="hidden" name="360nos[]" value="'+ room +'"><input type="file" style="width:247px" name="update360pic[]" required class="form-control" id="inputName1" accept="image/x-png,image/gif,image/jpeg" / ><br></div><div class="col-md-12"><div class="row showcod'+ room +'"><div class="col-sm-6"><input type="hidden" name="codeno'+ room +'[]" value="'+room+'" >  X : <input type="number" step="0.00000001" name="xval'+ room +'[]" style="width:20%"> Y : <input type="number" step="0.00000001" name="yval'+ room +'[]" style="width:20%"> Z : <input type="number" step="0.00000001" name="zval'+ room +'[]" style="width:20%"></div><div class="col-sm-6"><textarea style="width: 1200px;" name="coordinate_360_info'+ room +'[]" class="form-control" placeholder="Info text"></textarea></div> <div class="col-md-4"> <label for="inputName1" class="control-label">Images</label> <input type="file" style="width:247px" name="image'+ room +'2[]" class="form-control" id="inputName1" multiple accept="image/x-png,image/gif,image/jpeg" / > </div> <div class="col-md-4"> <label for="inputName1" class="control-label">3D Modals</label> <input type="file" style="width:247px" name="3dmodals'+ room +'2[]" class="form-control" id="inputName1" multiple / > </div><div class="col-md-12" style="text-align:right"><input type="button" class="btn btn-success" style="height: min-content;" onclick="add_coodi('+ room +')" value="Add More"><div></div></div></div></div></div></div><button style="margin: 10px 21px;" class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> Remove</button>';
-    
-    objTo.appendChild(divtest)
-}
-function remove_education_fields(rid) {
- $('.removeclass'+rid).remove();
-}
-
-var noc = Math.floor((Math.random() * 100) + 1);
-function add_coodi(no){
-  
-     $(".showcod"+no).after('<div style="padding:15px 0px" class="row showcod'+ noc +' removecla'+ noc +'"><div class="col-sm-6"><input type="hidden" name="codeno'+ no +'[]" value="'+noc+'" > X : <input type="number" step="0.00000001" name="xval'+ no +'[]" style="width:20%"> Y : <input type="number" step="0.00000001" name="yval'+ no +'[]" style="width:20%"> Z : <input type="number" step="0.00000001" name="zval'+no +'[]" style="width:20%"></div><div class="col-sm-6"><textarea style="width: 1200px;" name="coordinate_360_info'+no +'[]" class="form-control" placeholder="Info text"></textarea></div><div class="col-md-4"> <label for="inputName1" class="control-label">Images</label> <input type="file" style="width:247px" name="image'+no +noc+'[]" class="form-control" id="inputName1" multiple accept="image/x-png,image/gif,image/jpeg" / > </div> <div class="col-md-4"> <label for="inputName1" class="control-label">3D Modals</label> <input type="file" style="width:247px" name="3dmodals'+ no +noc+'[]" class="form-control" id="inputName1" multiple / > </div><div class="col-sm-12" style="text-align:right"><button class="btn btn-danger" type="button" onclick="remove_education_fields2('+ noc +');"> Remove</button><div></div>'); 
-      noc++;
-
-}
-
-
-function remove_education_fields2(rid) {
- $('.removecla'+rid).remove();
-}
-</script>
 
     </div>

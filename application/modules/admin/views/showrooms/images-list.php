@@ -33,7 +33,7 @@
            </div>
                 <div class="col-md-6 text-right">
 
-                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/showrooms/addShowrooms/".encode($cid));?>" title="<?php echo $this->lang->line('btn_add_showroom'); ?></a>"><?php echo $this->lang->line('btn_add_showroom'); ?></a>
+                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/showrooms/add360image/".encode($cid));?>" title="Add 360 Image">Add 360 Image</a>
 
               </div>
 
@@ -46,14 +46,8 @@
             <thead>
             <tr>
               <th nowrap=""> <input type="checkbox" name="checkAll[]" id="checkall"></th>
-              <th nowrap=""><?php echo $this->lang->line('sr_no'); ?></th>
-              <th nowrap=""><?php echo $this->lang->line('tb_showroom_thumbnail'); ?></th>
-              <th nowrap=""><?php echo $this->lang->line('tb_showroom_name'); ?></th>
-              <th nowrap=""><?php echo $this->lang->line('tb_showroom_bkground_video'); ?></th>
-              <th nowrap=""><?php echo $this->lang->line('tb_showroom_play_video'); ?></th>
-              <th nowrap=""><?php echo $this->lang->line('tb_showroom_visit_count'); ?></th>
-              <th nowrap=""><?php echo $this->lang->line('tb_showroom_video_visit_count'); ?></th>
-              <th nowrap=""><?php echo $this->lang->line('tb_active_deactive'); ?></th>
+              <th nowrap="">Description</th>
+              <th nowrap="">360image</th>
               <th nowrap=""><?php echo $this->lang->line('tb_action'); ?></th>
             </tr>
           </thead>
@@ -69,8 +63,8 @@
         var cid = $("#cid").val()
         // console.log(cid)
 
-        var sort_table = [0,1,2,4,5,6,7,8,9];
-        var postListingUrl =  BASEURL+"admin/showrooms/showroomAjaxlist/"+cid;
+        var sort_table = [0,1,2,3];
+        var postListingUrl =  BASEURL+"admin/showrooms/imageAjaxlist/"+cid;
         var table = setTable('#userList',postListingUrl,sort_table);
     });
 
