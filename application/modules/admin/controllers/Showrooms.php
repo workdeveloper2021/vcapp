@@ -688,7 +688,7 @@ class Showrooms extends My_Controller {
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
                         redirect(site_url().'admin/showrooms/addShowrooms/'.$cid); 
                     }
-                    $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Picture');
+                    $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
                 } else {
                     $updateuserpic = 'userdefault.png';
                 }
