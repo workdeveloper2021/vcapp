@@ -681,14 +681,14 @@ class Showrooms extends My_Controller {
                 
                 $file_ext = pathinfo($_FILES["update360pic"]["name"], PATHINFO_EXTENSION);
                 if (!empty($_FILES['update360pic']['name'])) {
-                    // check for valid file to upload 
-                    $file_ext=strtolower($file_ext);
-                    if(!in_array($file_ext, $allowedExts)){
-                        $this->session->set_flashdata('updateclass', 'danger');
-                        $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/showrooms/addShowrooms/'.$cid); 
-                    }
-                    $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
+                   $tmpFilePath2 = $_FILES['update360pic']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["update360pic"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'image360'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/showroom_media/'.$newFilePath2)) {
+                        $updateuserpic = $newFilePath2;
+                    }    
+                    // $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
                 } else {
                     $updateuserpic = 'userdefault.png';
                 }
