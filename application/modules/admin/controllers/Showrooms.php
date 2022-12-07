@@ -15,7 +15,7 @@ class Showrooms extends My_Controller {
             $currentuser = getuserdetails();
             $this->login_user_id = $currentuser['id'];
         }
-    }
+    } 
             
     public function companyshowrooms($user_id=''){
         // check_permission(EDIT,"user_list",1);
@@ -678,8 +678,6 @@ class Showrooms extends My_Controller {
             } else {
                 $updatedata = array();
 
-                
-                $file_ext = pathinfo($_FILES["update360pic"]["name"], PATHINFO_EXTENSION);
                 if (!empty($_FILES['update360pic']['name'])) {
                    $tmpFilePath2 = $_FILES['update360pic']['tmp_name'];
 
@@ -693,13 +691,28 @@ class Showrooms extends My_Controller {
                     $updateuserpic = 'userdefault.png';
                 }
 
+                 if (!empty($_FILES['retailer2']['name'])) {
+                   $tmpFilePath2 = $_FILES['retailer2']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["retailer2"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'retailerimg'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/showroom_media/'.$newFilePath2)) {
+                        $retailer2 = $newFilePath2;
+                    }    
+                    // $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
+                } else {
+                    $retailer2 = 'userdefault.png';
+                }
+
                
                
 
 
                 $updatedata['showroom_id'] = $comid;
                 $updatedata['description'] = $description;
+                $updatedata['retaileremail'] = $retaileremail;
                 $updatedata['retailer1'] = $retailer;
+                $updatedata['reatilerimage'] = $retailer2;
                 $updatedata['image360'] = $updateuserpic;
                 $imgid = $this->dynamic_model->insertdata('showroom_360_image', $updatedata);
                  if(!empty($nos360)){
@@ -732,6 +745,7 @@ class Showrooms extends My_Controller {
                             $updatedata['yval'] = $_POST['yval'.$xvalue];
                             $updatedata['zval'] = $_POST['zval'.$xvalue];
                             $updatedata['info'] = $_POST['coordinate_360_info'.$xvalue];
+                            $updatedata['product_name'] = $_POST['product_name'.$xvalue];
                             $updatedata['image'] = $img12;
                             $updatedata['created_at'] = time();
                            
