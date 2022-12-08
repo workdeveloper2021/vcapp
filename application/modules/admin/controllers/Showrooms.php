@@ -769,7 +769,7 @@ class Showrooms extends My_Controller {
                                             }    
                                         
                                       }
-                                   $this->dynamic_model->insertdata('showroom_3d_models', array('3dmodals'=>$modals,'color'=>$_POST['modals_color'.$xvalue][$key],'img360_id' =>$colorId)); 
+                                   $this->dynamic_model->insertdata('showroom_3d_models', array('modals3d'=>$modals,'color'=>$_POST['modals_color'.$xvalue][$key],'img360_id' =>$colorId)); 
                                            
                                 }
                             }
