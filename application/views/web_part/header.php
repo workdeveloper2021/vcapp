@@ -66,6 +66,16 @@
 
   </script>
    <script type="text/javascript" src="<?php echo base_url('assets_web/js/jquery.serializeToJSON.js'); ?>"></script>
+   <style>
+       div#slider_wrapper {
+    position: relative;
+    z-index: 0;
+}
+div#header {
+    position: fixed;
+    z-index: 1;
+}
+   </style>
 
 </head>
 

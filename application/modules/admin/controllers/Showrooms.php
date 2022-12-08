@@ -740,7 +740,7 @@ class Showrooms extends My_Controller {
                             $updatedata = array();
                             $updatedata['showroom_id'] = $comid;
                             $updatedata['is_showrooms_coordinates'] = '1';
-                            $updatedata['360image_id'] =  $imgid;
+                            $updatedata['image360_id'] =  $imgid;
                             $updatedata['xval'] = $_POST['xval'.$xvalue];
                             $updatedata['yval'] = $_POST['yval'.$xvalue];
                             $updatedata['zval'] = $_POST['zval'.$xvalue];
