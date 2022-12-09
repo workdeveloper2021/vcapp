@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
-<html>
+<html> 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -211,6 +211,10 @@ onReady(function() {
     
     <li>
       <a href="<?php echo site_url(); ?>admin/companies"> <i class="fas fa-file-contract"></i> <span><?php echo $this->lang->line('company_management'); ?></span></a>
+    </li>
+
+    <li>
+      <a href="<?php echo site_url(); ?>admin/FurnitureCompanies"> <i class="fas fa-file-contract"></i> <span><?php echo $this->lang->line('company_management_furniture'); ?></span></a>
     </li>
 
     

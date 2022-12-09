@@ -17,7 +17,7 @@
      <div class="row">
         <div class="col-md-6">
 
-         <a href="<?php echo site_url();?>admin/companies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+         <a href="<?php echo site_url();?>admin/furnitureshowrooms" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
 
          <input type="hidden" name="cid" id="cid" value="<?php echo $cid; ?>" class="getIds">
 
@@ -33,7 +33,7 @@
            </div>
                 <div class="col-md-6 text-right">
 
-                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/showrooms/add360image/".encode($cid));?>" title="Add 360 Image">Add 360 Image</a>
+                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/furnitureshowrooms/addShowrooms/".encode($cid));?>" title="<?php echo $this->lang->line('btn_add_showroom'); ?></a>"><?php echo $this->lang->line('btn_add_showroom'); ?></a>
 
               </div>
 
@@ -42,14 +42,19 @@
           <?php if ($this->session->flashdata('updateerror') != '') {
               echo '<h6 class="'.$this->session->flashdata('updateclass').'">'.$this->session->flashdata('updateerror').'</h6>';
             } ?>
-        <table id="userList" class="table table-bordered  table-responsive">
+        <table id="userList" class="table table-bordered table-responsive">
             <thead>
             <tr>
               <th nowrap=""> <input type="checkbox" name="checkAll[]" id="checkall"></th>
-              <th nowrap="">Description</th>
-              <th nowrap="">360image</th>
+              <th nowrap=""><?php echo $this->lang->line('sr_no'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_showroom_thumbnail'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_showroom_name'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_showroom_bkground_video'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_showroom_play_video'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_showroom_visit_count'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_showroom_video_visit_count'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_active_deactive'); ?></th>
               <th nowrap=""><?php echo $this->lang->line('tb_action'); ?></th>
-
             </tr>
           </thead>
         </table>
@@ -59,13 +64,13 @@
 
 
 <script type="text/javascript">
-        $(document).ready(function(){
+    $(document).ready(function(){
 
         var cid = $("#cid").val()
         // console.log(cid)
 
-        var sort_table = [0,1,2,3];
-        var postListingUrl =  BASEURL+"admin/showrooms/imageAjaxlist/"+cid;
+        var sort_table = [0,1,2,4,5,6,7,8,9];
+        var postListingUrl =  BASEURL+"admin/furnitureshowrooms/showroomAjaxlist/"+cid;
         var table = setTable('#userList',postListingUrl,sort_table);
     });
 

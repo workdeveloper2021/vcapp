@@ -17,7 +17,7 @@
      <div class="row">
         <div class="col-md-6">
 
-         <a href="<?php echo site_url();?>admin/companies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+         <a href="<?php echo site_url();?>admin/furnitureshowrooms" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
 
          <input type="hidden" name="cid" id="cid" value="<?php echo $cid; ?>" class="getIds">
 
@@ -33,7 +33,7 @@
            </div>
                 <div class="col-md-6 text-right">
 
-                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/showrooms/add360image/".encode($cid));?>" title="Add 360 Image">Add 360 Image</a>
+                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/furnitureshowrooms/add360image/".encode($cid));?>" title="Add 360 Image">Add 360 Image</a>
 
               </div>
 
@@ -65,7 +65,7 @@
         // console.log(cid)
 
         var sort_table = [0,1,2,3];
-        var postListingUrl =  BASEURL+"admin/showrooms/imageAjaxlist/"+cid;
+        var postListingUrl =  BASEURL+"admin/furnitureshowrooms/imageAjaxlist/"+cid;
         var table = setTable('#userList',postListingUrl,sort_table);
     });
 

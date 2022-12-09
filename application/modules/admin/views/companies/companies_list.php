@@ -62,7 +62,7 @@
 
 
 <script type="text/javascript">
-        $(document).ready(function(){
+  $(document).ready(function(){
         var sort_table = [0,1,2,4,7,8,10];
         var postListingUrl =  BASEURL+"admin/companies/companyAjaxlist";
 

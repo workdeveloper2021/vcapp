@@ -708,7 +708,8 @@ $lang["company_location"] = "Company Location";
 $lang["location_active"] = "Locations has been activated successfully ";
 $lang["location_deactive"] = "Locations has been Inactived successfully ";
 
-$lang['company_management'] = "Company Management";
+$lang['company_management'] = "Company Manag. Property";
+$lang['company_management_furniture'] = "Company Manag. furniture";
 $lang['company_location_master'] = "Company Location Master";
 $lang["location_name"] 			= "Location Name";
 $lang["btn_location_update"]    	= "Update Location"; 

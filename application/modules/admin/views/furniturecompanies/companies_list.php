@@ -12,28 +12,25 @@
 </div> -->
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-
-
      <div class="row">
         <div class="col-md-6">
-
-         <a href="<?php echo site_url();?>admin/companies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
-
-         <input type="hidden" name="cid" id="cid" value="<?php echo $cid; ?>" class="getIds">
-
-         <!-- <form action="<?php echo base_url() ?>admin/showrooms/block_showroom" class="d-inline" data-parsley-validate novalidate method="post">
+         <form action="<?php echo base_url() ?>admin/FurnitureCompanies/block_company" class="d-inline" data-parsley-validate novalidate method="post">
              <input type="hidden" name="ids" value="" class="getIds">
              <button type="submit" class="btn btn-primary">Active</button>
          </form>
-          <form action="<?php echo base_url() ?>admin/showrooms/unblock_showroom" class="d-inline" data-parsley-validate novalidate method="post">
+          <form action="<?php echo base_url() ?>admin/FurnitureCompanies/unblock_company" class="d-inline" data-parsley-validate novalidate method="post">
              <input type="hidden" name="ids" value="" class="getIds">
              <button type="submit" class="btn btn-danger">Inactive</button>
-         </form> -->
+         </form>
 
            </div>
                 <div class="col-md-6 text-right">
 
-                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/showrooms/add360image/".encode($cid));?>" title="Add 360 Image">Add 360 Image</a>
+
+
+                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/FurnitureCompanies/addCompany");?>" title="<?php echo $this->lang->line('add_company'); ?>"><?php echo $this->lang->line('add_company'); ?></a>
+
+
 
               </div>
 
@@ -42,14 +39,20 @@
           <?php if ($this->session->flashdata('updateerror') != '') {
               echo '<h6 class="'.$this->session->flashdata('updateclass').'">'.$this->session->flashdata('updateerror').'</h6>';
             } ?>
-        <table id="userList" class="table table-bordered  table-responsive">
+        <table id="userList" class="table table-responsive table-bordered">
             <thead>
             <tr>
               <th nowrap=""> <input type="checkbox" name="checkAll[]" id="checkall"></th>
-              <th nowrap="">Description</th>
-              <th nowrap="">360image</th>
-              <th nowrap=""><?php echo $this->lang->line('tb_action'); ?></th>
-
+              <th nowrap=""><?php echo $this->lang->line('sr_no'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_company_thumbnail'); ?></th>
+              <th nowrap="" width="100"><?php echo $this->lang->line('tb_company_name'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_company_video'); ?></th>
+              <th nowrap="" width="100"><?php echo $this->lang->line('tb_company_location'); ?></th>
+              <th nowrap="" width="250"><?php echo $this->lang->line('tb_company_info'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_company_visit_count'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_showroom_portal_tapped_count'); ?></th>
+              <th nowrap=""><?php echo $this->lang->line('tb_active_deactive'); ?></th>
+              <th nowrap="" width="500"><?php echo $this->lang->line('tb_action'); ?></th>
             </tr>
           </thead>
         </table>
@@ -60,12 +63,14 @@
 
 <script type="text/javascript">
         $(document).ready(function(){
+        var sort_table = [0,1,2,4,7,8,10];
+        var postListingUrl =  BASEURL+"admin/FurnitureCompanies/companyAjaxlist";
 
-        var cid = $("#cid").val()
-        // console.log(cid)
+                      $('#userList').dataTable({
+                              "bDestroy": true,
+                              "scrollX": true
+                     }).fnDestroy(); 
 
-        var sort_table = [0,1,2,3];
-        var postListingUrl =  BASEURL+"admin/showrooms/imageAjaxlist/"+cid;
         var table = setTable('#userList',postListingUrl,sort_table);
     });
 
