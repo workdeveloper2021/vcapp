@@ -92,7 +92,7 @@ class Showroom extends CI_Controller
 		$data = $this->db->where('showroom_id',$id)->get('showroom_360_image')->result_array();
         if(!empty($data)){
         	foreach ($data as $key => $value) {
-        		$image = $this->db->where('360image_id',$value['id'])->get('img_360_coordinates')->result_array();
+        		$image = $this->db->where('360image_id',$value['id'])->get('product')->result_array();
         		if(!empty($image)){
         			foreach ($image as $kee => $img) {
         					$image[$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('showroom_3d_models')->result_array();
@@ -125,7 +125,7 @@ class Showroom extends CI_Controller
 		$data = $this->db->get('manage_showroom_list')->result_array();
         if(!empty($data)){
         	foreach ($data as $key => $value) {
-        		$image =$this->db->where('showroom_id',$value['id'])->get('img_360_coordinates')->result_array();
+        		$image =$this->db->where('showroom_id',$value['id'])->get('product')->result_array();
         		if(!empty($image)){
         			foreach ($image as $kee => $img) {
         					$image[$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('showroom_3d_models')->result_array();
@@ -158,7 +158,7 @@ class Showroom extends CI_Controller
 		$data = $this->db->where('id',$id)->get('manage_showroom_list')->row_array();
         if(!empty($data)){
         	foreach ($data as $key => $value) {
-        		$data[$key]['coordinates'] =$this->db->where('360image_id',$value['id'])->get('img_360_coordinates')->result_array();
+        		$data[$key]['coordinates'] =$this->db->where('360image_id',$value['id'])->get('product')->result_array();
         	}
         }
 		if(!$data){
