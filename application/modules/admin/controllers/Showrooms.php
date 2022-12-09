@@ -183,8 +183,8 @@ class Showrooms extends My_Controller {
                 $loguserinfo['showroominfo'] = $userdata;
 
                 $where = "showroom_id ='".$uid."' && is_showrooms_coordinates='1'";
-                $userdata2=$this->dynamic_model->getdatafromtable('img_360_coordinates',$where); 
-                $loguserinfo['img_360_coordinates'] = $userdata2;
+                $userdata2=$this->dynamic_model->getdatafromtable('product',$where); 
+                $loguserinfo['product'] = $userdata2;
 
 
             $header['title'] = $this->lang->line('btn_update_details');
@@ -210,7 +210,7 @@ class Showrooms extends My_Controller {
         $uid =  decode($user_id);
         if(!empty($user_id) && !empty($uid)){
             $where2 = "id ='".$uid."'";
-            $userdata2=$this->dynamic_model->deletedata('img_360_coordinates',$where2); 
+            $userdata2=$this->dynamic_model->deletedata('product',$where2); 
             echo $userdata2;
         }
         echo "";
@@ -275,7 +275,7 @@ class Showrooms extends My_Controller {
                // echo $userid ; exit();
 
                 $where = "showroom_id ='".$userid."'";
-                $this->dynamic_model->deletedata('img_360_coordinates',$where); 
+                $this->dynamic_model->deletedata('product',$where); 
 
                 if(!empty($xval) && count($xval)>0){
                     foreach ($xval as $key => $xvalue) { 
@@ -289,7 +289,7 @@ class Showrooms extends My_Controller {
                             $updatedata['zval'] = $zval[$key];
                             $updatedata['info'] = $coordinate_360_info[$key];
                             $updatedata['created_at'] = time();
-                            $colorId = $this->dynamic_model->insertdata('img_360_coordinates', $updatedata); 
+                            $colorId = $this->dynamic_model->insertdata('product', $updatedata); 
                             $updatedata = array();
 
                         }
@@ -749,7 +749,7 @@ class Showrooms extends My_Controller {
                             $updatedata['image'] = $img12;
                             $updatedata['created_at'] = time();
                            
-                            $colorId = $this->dynamic_model->insertdata('img_360_coordinates', $updatedata); 
+                            $colorId = $this->dynamic_model->insertdata('product', $updatedata); 
                             
                             $updatedata = array();
                            
@@ -880,6 +880,9 @@ class Showrooms extends My_Controller {
         }
        redirect($_SERVER["HTTP_REFERER"]);
     }  
+
+
+   
 
 
 

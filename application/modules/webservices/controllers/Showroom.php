@@ -14,7 +14,7 @@ ini_set('max_execution_time', 0);
  * ********************************************************** */
 
 
-class Showroom extends CI_Controller
+class Showroom extends MY_Controller
 {
 
 	public function __construct()
@@ -177,4 +177,43 @@ class Showroom extends CI_Controller
 
 		echo json_encode($arg);
 	}
+
+	//Update favourite status from product table
+	 public function Addfavourite(){
+
+	 	$input = $this->input->post();
+	  if ($input['id'] !== '' && $input['favourite_status'] !== '') {
+	 
+      $chkid = $this->db->select('id')->where(array('id'=>$input['id']))->get('product')->row_array();
+      if (!empty($chkid)) {
+    
+      $result = $this->db->where(array('id'=>$input['id']))->update('product',array('favourite_status'=>$input['favourite_status']));
+
+      if ($result) {
+      	echo 'Updated Successfully';
+      	
+      }else{
+      	echo 'Not Updated';
+      }
+  	}else{
+  		echo 'Wrong Id';
+  	}
+  }else{
+  	echo 'Both field are required';
+  }
+    }
+
+
+    //Get all favourite status from product table
+
+
+     public function Fetchfavourite(){
+
+	  $result = $this->db->select('*')->where('favourite_status !=','no')->get('product')->result_array();
+
+	  //print_r($result);
+      echo json_encode($result);
+    }
+
+
 }
