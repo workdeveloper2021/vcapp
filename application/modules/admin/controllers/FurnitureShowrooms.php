@@ -9,7 +9,7 @@ class FurnitureShowrooms extends My_Controller {
         $this->load->model('users_model');
         $this->load->model('company_model');
         $this->load->model('furniture_s_model');
-        $this->load->model('Images_model');
+        $this->load->model('FurnitureImages_model');
         $this->lang->load("admin_message", "english");
         if($this->session->userdata('logged_in')){
             $currentuser = getuserdetails();
@@ -817,8 +817,8 @@ class FurnitureShowrooms extends My_Controller {
                 $column_name='id';
             }
         }
-        $totalRecord      = $this->Images_model->showroomAjaxlist(true,0,0,'','desc',$cid);
-        $getRecordListing = $this->Images_model->showroomAjaxlist(false,$start,$length, $column_name, $order[0]['dir'],$cid);
+        $totalRecord      = $this->FurnitureImages_model->showroomAjaxlist(true,0,0,'','desc',$cid);
+        $getRecordListing = $this->FurnitureImages_model->showroomAjaxlist(false,$start,$length, $column_name, $order[0]['dir'],$cid);
         // print_r($getRecordListing);die();
         // echo'<pre>';
         // print_r($getRecordListing);
