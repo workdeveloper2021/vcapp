@@ -35,18 +35,67 @@ class Showroom extends CI_Controller
 		$this->load->library('Bomborapay');
 		
 	}
+  
+  public function get_furniture_companies()
+	{
+		$arg = array();
+		$data = $this->db->where('status','Active')->get('manage_company_furniture')->result_array();
+        if(!empty($data)){
+        	foreach ($data as $key => $value) {
+        		$data[$key]['showrooms'] =$this->db->where('company_id',$value['id'])->where('status','Active')->get('manage_showroom_furiture')->result_array();
+        		$data[$key]['retailers'] =$this->db->where('company_id',$value['id'])->get('company_retailers')->result_array();
+        	}
+        }
+      	if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "images listed successfully.";
+		}
 
+		echo json_encode($arg);
+	}
 
 	public function get_companies()
 	{
 		$arg = array();
-		$data = $this->db->get('manage_company_list')->result_array();
+		$data = $this->db->where('status','Active')->get('manage_company_list')->result_array();
         if(!empty($data)){
         	foreach ($data as $key => $value) {
-        		$data[$key]['showrooms'] =$this->db->where('company_id',$value['id'])->get('manage_showroom_list')->result_array();
+        		$data[$key]['showrooms'] =$this->db->where('company_id',$value['id'])->where('status','Active')->get('manage_showroom_list')->result_array();
         	}
         }
       	if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "images listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
+	public function get_furniture_companies_byid($id)
+	{
+		$arg = array();
+		$data = $this->db->where('id',$id)->get('manage_company_list')->row_array();
+        $data['showrooms'] =$this->db->where('company_id',$data['id'])->get('manage_showroom_furiture')->row_array();
+         $data['retailers'] =$this->db->where('company_id',$data['id'])->get('company_retailers')->row_array();
+       	if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
 			$arg['error_line'] = __line__;
@@ -119,6 +168,39 @@ class Showroom extends CI_Controller
 		echo json_encode($arg);
 	}
 
+	public function get_furniture_showroom()
+	{
+		$arg = array();
+		$data = $this->db->get('manage_showroom_furiture')->result_array();
+        if(!empty($data)){
+        	foreach ($data as $key => $value) {
+        		$image  =$this->db->where('showroom_id',$value['id'])->get('furiture_product')->result_array();
+        		if(!empty($image)){
+        			foreach ($image as $kee => $img) {
+        					$image[$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('furitureshowroom_3d_models')->result_array();
+        			}
+        		}
+        		$data[$key]['coordinates'] =$image;
+
+        	}
+        }
+		if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "Showrooms listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
 	public function get_showroom()
 	{
 		$arg = array();
@@ -152,15 +234,45 @@ class Showroom extends CI_Controller
 		echo json_encode($arg);
 	}
 
+
+	public function get_furniture_showroom_byid($id)
+	{
+		$arg = array();
+		$data = $this->db->where('id',$id)->get('manage_showroom_furiture')->row_array();
+    $data['coordinates'] =$this->db->where('image360_id',$data['id'])->get('furiture_product')->result_array();
+    if(!empty($data['coordinates'] )){
+				foreach ($data['coordinates']  as $kee => $img) {
+						$data['coordinates'][$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('furitureshowroom_3d_models')->result_array();
+				}
+			}
+		if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "Showrooms listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
+
 	public function get_showroom_byid($id)
 	{
 		$arg = array();
 		$data = $this->db->where('id',$id)->get('manage_showroom_list')->row_array();
-        if(!empty($data)){
-        	foreach ($data as $key => $value) {
-        		$data[$key]['coordinates'] =$this->db->where('image360_id',$value['id'])->get('product')->result_array();
-        	}
-        }
+    $data['coordinates'] =$this->db->where('image360_id',$data['id'])->get('product')->result_array();
+    if(!empty($data['coordinates'] )){
+				foreach ($data['coordinates']  as $kee => $img) {
+						$data['coordinates'][$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('showroom_3d_models')->result_array();
+				}
+			}
 		if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
@@ -203,6 +315,30 @@ class Showroom extends CI_Controller
   }
     }
 
+
+   public function Addfavourite_furniture(){
+
+	 	$input = $this->input->post();
+	  if ($input['id'] !== '' && $input['favourite_status'] !== '') {
+	 
+      $chkid = $this->db->select('id')->where(array('id'=>$input['id']))->get('furiture_product')->row_array();
+      if (!empty($chkid)) {
+    
+      $result = $this->db->where(array('id'=>$input['id']))->update('furiture_product',array('favourite_status'=>$input['favourite_status']));
+
+      if ($result) {
+      	echo 'Updated Successfully';
+      	
+      }else{
+      	echo 'Not Updated';
+      }
+  	}else{
+  		echo 'Wrong Id';
+  	}
+  }else{
+  	echo 'Both field are required';
+  }
+    }
 
     //Get all favourite status from product table
 
