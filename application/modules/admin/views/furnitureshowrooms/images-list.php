@@ -36,6 +36,7 @@
                    <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/furnitureshowrooms/add360image/".encode($cid));?>" title="Add 360 Image">Add 360 Image</a>
 
               </div>
+             
 
             </div>
       <div class="card-box">

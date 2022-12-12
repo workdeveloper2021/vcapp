@@ -51,14 +51,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <input type="file"  name="retailer2" class="form-control"  / >
                       </div>
                   </div><br>
+
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <label for="inputName1" class="col-sm-3 control-label"><?php echo $this->lang->line('tb_showroom_img_360'); ?></label>
                        <input type="hidden" name="nos360[]" value="0">
                      
                       <input type="file" style="width:247px" name="update360pic" required class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
                       <br>
+                      </div>
+                    <div class="col-md-6">
+                       <label for="inputName1" class="col-sm-3 control-label">Thumbnail Image 360</label>
+                       <input type="hidden" name="thumbnail[]" value="0">
+                     
+                      <input type="file" style="width:247px" name="thumbnail360" required class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
+                      <br>
                     </div>
+                  </div>
+                    
                     <div class="col-md-12">
                        <div class="row showcod1">
                           <div class="col-sm-4">

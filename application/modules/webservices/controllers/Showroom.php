@@ -168,6 +168,39 @@ class Showroom extends CI_Controller
 		echo json_encode($arg);
 	}
 
+	public function get_furniture_360image($id)
+	{
+		$arg = array();
+		$data = $this->db->where('showroom_id',$id)->get('showroom_furniuture360_image')->result_array();
+        if(!empty($data)){
+        	foreach ($data as $key => $value) {
+        		$image = $this->db->where('image360_id',$value['id'])->get('furiture_product')->result_array();
+        		if(!empty($image)){
+        			foreach ($image as $kee => $img) {
+        					$image[$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('furitureshowroom_3d_models')->result_array();
+        			}
+        		}
+        		$data[$key]['coordinates'] =$image;
+        	}
+        }
+
+		if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "images listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
 	public function get_furniture_showroom()
 	{
 		$arg = array();

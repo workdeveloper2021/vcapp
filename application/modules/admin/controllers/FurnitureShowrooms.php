@@ -704,6 +704,19 @@ class FurnitureShowrooms extends My_Controller {
                     $retailer2 = 'userdefault.png';
                 }
 
+
+                if(!empty($_FILES['thumbnail']['name'])) {
+                   $tmpFilePath2 = $_FILES['thumbnail']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["thumbnail"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'thumbnail'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/showroom_media/'.$newFilePath2)) {
+                        $thumbnail = $newFilePath2;
+                    }    
+                    // $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
+                } else {
+                    $thumbnail = 'userdefault.png';
+                }
                
                
 
@@ -714,7 +727,8 @@ class FurnitureShowrooms extends My_Controller {
                 $updatedata['retailer1'] = $retailer;
                 $updatedata['reatilerimage'] = $retailer2;
                 $updatedata['image360'] = $updateuserpic;
-                $imgid = $this->dynamic_model->insertdata('showroom_360_image', $updatedata);
+                $updatedata['thumbnail'] = $thumbnail;
+                $imgid = $this->dynamic_model->insertdata('showroom_furniuture360_image', $updatedata);
                  if(!empty($nos360)){
                         foreach ($nos360 as $key => $xvalue) {
                         $ddt = $_POST['codeno'.$xvalue];

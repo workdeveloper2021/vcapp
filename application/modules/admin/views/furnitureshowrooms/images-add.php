@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="row">
    
     <div class="col-md-12">
-      <a href="<?php echo site_url();?>admin/showrooms/companyshowrooms/<?php echo $cid;?>" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+      <a href="<?php echo site_url();?>admin/furnitureshowrooms/companyshowrooms/<?php echo $cid;?>" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
       <div class="card-box">
             <!-- <h4 class="header-title m-t-0 m-b-30"><?php echo $this->lang->line('basic_info'); ?></h4> -->
             <?php if ($this->session->flashdata('updateerror') != '') { 
@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $attributes = array('class' => 'form-horizontal', 'id' => '', 'enctype' => 'multipart/form-data' );
               $hidden = array('is_submit' => 1);
               $parsle = 'data-parsley-validate novalidate';
-              echo form_open_multipart('admin/showrooms/imageAddSubmit/'.$cid, $attributes, $hidden);
+              echo form_open_multipart('admin/furnitureshowrooms/imageAddSubmit/'.$cid, $attributes, $hidden);
               //echo "<pre>";print_r($userinfo);
             ?>
                 <div class="row">
@@ -52,13 +52,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                   </div><br>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <label for="inputName1" class="col-sm-3 control-label"><?php echo $this->lang->line('tb_showroom_img_360'); ?></label>
                        <input type="hidden" name="nos360[]" value="0">
                      
                       <input type="file" style="width:247px" name="update360pic" required class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
                       <br>
                     </div>
+                     <div class="col-md-6">
+                      <label for="inputName1" class="col-sm-3 control-label">Thumbnail</label>
+                       <input type="hidden" name="thumbnail" value="0">
+                     
+                      <input type="file" style="width:247px" name="thumbnail" required class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
+                      <br>
+                    </div>
+
                     <div class="col-md-12">
                        <div class="row showcod1">
                           <div class="col-sm-4">
