@@ -17,7 +17,7 @@
      <div class="row">
         <div class="col-md-6">
 
-         <a href="<?php echo site_url();?>admin/furnitureshowrooms" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+         <a href="<?php echo site_url();?>admin/FurnitureShowrooms" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
 
          <input type="hidden" name="cid" id="cid" value="<?php echo $cid; ?>" class="getIds">
 
@@ -33,7 +33,7 @@
            </div>
                 <div class="col-md-6 text-right">
 
-                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/furnitureshowrooms/addShowrooms/".encode($cid));?>" title="<?php echo $this->lang->line('btn_add_showroom'); ?></a>"><?php echo $this->lang->line('btn_add_showroom'); ?></a>
+                   <a class="btn btn-active waves-effect m-b-10" style="width: 15%;" href="<?php echo base_url("admin/FurnitureShowrooms/addShowrooms/".encode($cid));?>" title="<?php echo $this->lang->line('btn_add_showroom'); ?></a>"><?php echo $this->lang->line('btn_add_showroom'); ?></a>
 
               </div>
 
