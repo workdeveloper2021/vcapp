@@ -236,7 +236,7 @@ class FurnitureShowrooms extends My_Controller {
             if ($this->form_validation->run() == FALSE){
                 $this->session->set_flashdata('updateclass', 'danger');
                 $this->session->set_flashdata('updateerror', get_form_error($this->form_validation->error_array()));
-                redirect(site_url().'admin/furnitureshowrooms/companyshowrooms/'.encode($company_id));
+                redirect(site_url().'admin/Furnitureshowrooms/companyshowrooms/'.encode($company_id));
             } else {
                 $updatedata = array();                
                 $userid = $updateid;
@@ -249,7 +249,7 @@ class FurnitureShowrooms extends My_Controller {
                     if(!in_array($file_ext, $allowedExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
+                        redirect(site_url().'admin/Furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
                     }
                     $img_name = $this->dynamic_model->fileupload('updateuserpic', 'uploads/showroom_media', 'Picture');
                 } else {
@@ -265,7 +265,7 @@ class FurnitureShowrooms extends My_Controller {
                     if(!in_array($file_ext, $allowedExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
+                        redirect(site_url().'admin/Furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
                     }
                     $img_360_name = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Picture');
                 } else {
@@ -303,7 +303,7 @@ class FurnitureShowrooms extends My_Controller {
                     if(!in_array($file_ext, $allowedVidExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
+                        redirect(site_url().'admin/Furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
                      
                     }
                     $vid_name = $this->dynamic_model->fileupload('updatevideo', 'uploads/showroom_media', 'Video');
@@ -321,7 +321,7 @@ class FurnitureShowrooms extends My_Controller {
                     if(!in_array($file_ext, $allowedVidExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
+                        redirect(site_url().'admin/Furnitureshowrooms/companyshowrooms/'.encode($company_id)); 
                      
                     }
                     $vid_play_name = $this->dynamic_model->fileupload('updateplayvideo', 'uploads/showroom_media', 'Video');
@@ -338,12 +338,12 @@ class FurnitureShowrooms extends My_Controller {
                 $this->dynamic_model->updatedata('manage_showroom_furiture', $updatedata, $userid); 
                 $this->session->set_flashdata('updateclass', 'success');
                 $this->session->set_flashdata('updateerror', $this->lang->line('showroom_update'));
-                redirect(site_url().'admin/furnitureshowrooms/companyshowrooms/'.encode($company_id));  
+                redirect(site_url().'admin/Furnitureshowrooms/companyshowrooms/'.encode($company_id));  
             }           
         } else {
              $this->session->set_flashdata('updateclass', 'danger');
              $this->session->set_flashdata('updateerror', 'SomeProble in Server. Please Try Again');
-            redirect(site_url().'admin/furnitureshowrooms/companyshowrooms/'.encode($company_id));                    
+            redirect(site_url().'admin/Furnitureshowrooms/companyshowrooms/'.encode($company_id));                    
         }     
     }
 
@@ -369,7 +369,7 @@ class FurnitureShowrooms extends My_Controller {
             if ($this->form_validation->run() == FALSE){
                 $this->session->set_flashdata('updateclass', 'danger');
                 $this->session->set_flashdata('updateerror', get_form_error($this->form_validation->error_array()));
-                redirect(site_url().'admin/furnitureshowrooms/addShowrooms/'.$cid);
+                redirect(site_url().'admin/Furnitureshowrooms/addShowrooms/'.$cid);
             } else {
                 $updatedata = array();
 
@@ -381,7 +381,7 @@ class FurnitureShowrooms extends My_Controller {
                     if(!in_array($file_ext, $allowedExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/furnitureshowrooms/addShowrooms/'.$cid); 
+                        redirect(site_url().'admin/Furnitureshowrooms/addShowrooms/'.$cid); 
                     }
                     $updateuserpic = $this->dynamic_model->fileupload('updateuserpic', 'uploads/showroom_media', 'Picture');
                 } else {
@@ -396,7 +396,7 @@ class FurnitureShowrooms extends My_Controller {
                     if(!in_array($file_ext, $allowedVidExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/furnitureshowrooms/addShowrooms/'.$cid); 
+                        redirect(site_url().'admin/Furnitureshowrooms/addShowrooms/'.$cid); 
                      
                     }
                     $vid_name = $this->dynamic_model->fileupload('updatevideo', 'uploads/showroom_media', 'Video');
@@ -413,7 +413,7 @@ class FurnitureShowrooms extends My_Controller {
                     if(!in_array($file_ext, $allowedVidExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/furnitureshowrooms/addShowrooms/'.$cid); 
+                        redirect(site_url().'admin/Furnitureshowrooms/addShowrooms/'.$cid); 
                      
                     }
                     $vid_play = $this->dynamic_model->fileupload('updateplayvideo', 'uploads/showroom_media', 'Video');
@@ -434,12 +434,12 @@ class FurnitureShowrooms extends My_Controller {
                
                 $this->session->set_flashdata('updateclass', 'success');
                 $this->session->set_flashdata('updateerror', $this->lang->line('showroom_add'));
-                redirect(site_url().'admin/furnitureshowrooms/addShowrooms/'.$cid);  
+                redirect(site_url().'admin/Furnitureshowrooms/addShowrooms/'.$cid);  
             }           
         } else {
              $this->session->set_flashdata('updateclass', 'danger');
              $this->session->set_flashdata('updateerror', 'SomeProble in Server. Please Try Again');
-            redirect(site_url().'admin/furnitureshowrooms/addShowrooms/'.$cid);                    
+            redirect(site_url().'admin/Furnitureshowrooms/addShowrooms/'.$cid);                    
         }     
     }
 
@@ -636,7 +636,7 @@ class FurnitureShowrooms extends My_Controller {
         if(!empty($user_id) && !empty($uid)){
             $loguserinfo['cid'] = $uid;
             $header['title'] = $this->lang->line('images_360_list');
-            $this->admintemplates('FurnitureShowrooms/images-list', $loguserinfo, $header);
+            $this->admintemplates('furnitureShowrooms/images-list', $loguserinfo, $header);
         } else{
             redirect(base_url('admin/companies'));
         }
@@ -650,7 +650,7 @@ class FurnitureShowrooms extends My_Controller {
 
             $loguserinfo['cid'] = $cid;
             $header['title'] = $this->lang->line('title_add_360image');
-            $this->admintemplates('FurnitureShowrooms/images-add', $loguserinfo, $header);
+            $this->admintemplates('furnitureShowrooms/images-add', $loguserinfo, $header);
     }
 
 
