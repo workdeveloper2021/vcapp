@@ -903,14 +903,157 @@ class FurnitureShowrooms extends My_Controller {
              $uid =  decode($user_id);
             if(!empty($user_id) && !empty($uid)){
                 $where2 = "id ='".$uid."'";
-            $loguserinfo['cid'] = $uid;
+            $loguserinfo['cid'] = $user_id;
             $header['title'] = $this->lang->line('title_add_360image');
 
-               $data['data'] = $this->db->select('*')->where($where2)->get('showroom_360_image')->row_array();
+               $data['data'] = $this->db->select('*')->where($where2)->get('showroom_furniuture360_image')->row_array();
 
                $this->admintemplates('furnitureshowrooms/images-edit',$data,$loguserinfo, $header);
             }
         }
+
+        
+    public function imageUpdateSubmit($cid){
+        // echo '<pre>';
+        // print_r($_POST); die;
+        $comid = decode($cid);
+        // check_permission(EDIT,"user_list",1);
+        extract($this->input->post());
+        $allowedExts = array("JPG","JPEG","PNG","png","jpeg","jpg");
+        $allowedVidExts = array("MP4","AVI","3GP","3GPP","mp4","avi","3gp","3gpp");
+
+        $is_submit = $this->input->post('is_submit');
+        if(isset($is_submit) && $is_submit == 1){
+            $this->form_validation->set_rules('description', 'description', 'required');
+            // $this->form_validation->set_rules('updateuserpic', 'update showroom thumbnail', 'required');
+            // $this->form_validation->set_rules('updatevideo', 'update showroom video', 'required');
+            // $this->form_validation->set_rules('updateplayvideo', 'update showroom play video', 'required');
+            // $this->form_validation->set_rules('update360pic', 'update showroom 360 image', 'required');
+            
+            if ($this->form_validation->run() == FALSE){
+                $this->session->set_flashdata('updateclass', 'danger');
+                $this->session->set_flashdata('updateerror', get_form_error($this->form_validation->error_array()));
+                redirect(site_url().'admin/showrooms/addShowrooms/'.$cid);
+            } else {
+                $updatedata = array();
+
+                if ($_FILES['update360pic']['size']>0) {
+                   $tmpFilePath2 = $_FILES['update360pic']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["update360pic"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'image360'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/showroom_media/'.$newFilePath2)) {
+                        $updatedata['image360'] = $newFilePath2;
+                    }    
+                    // $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
+                } 
+
+
+                 if ($_FILES['retailer2']['size']>0) {
+                   $tmpFilePath2 = $_FILES['retailer2']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["retailer2"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'retailerimg'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/showroom_media/'.$newFilePath2)) {
+                         $updatedata['reatilerimage'] = $newFilePath2;
+                    }    
+                    // $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
+                }
+
+
+                if($_FILES['thumbnail']['size']>0) {
+                   $tmpFilePath2 = $_FILES['thumbnail']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["thumbnail"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'thumbnail'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/showroom_media/'.$newFilePath2)) {
+                         $updatedata['thumbnail'] = $newFilePath2;
+                    }    
+                    // $updateuserpic = $this->dynamic_model->fileupload('update360pic', 'uploads/showroom_media', 'Model');
+                }
+
+               
+                
+
+
+                $updatedata['showroom_id'] = $comid;
+                $updatedata['description'] = $description;
+                $updatedata['retaileremail'] = $retaileremail;
+                $updatedata['retailer1'] = $retailer;
+                $imgid = $imgid; 
+                $this->dynamic_model->updatedata('showroom_furniuture360_image', $updatedata,$imgid);
+                 if(!empty($nos360)){
+                        foreach ($nos360 as $key => $xvalue) {
+                        $ddt = $_POST['codeno'.$xvalue];
+                        //image
+                          if(!empty($_FILES['image'.$xvalue]['name'])){
+                            for ($j=0; $j <count($_FILES['image'.$xvalue]['name']) ; $j++) {
+                                $tmpFilePath1 = $_FILES['image'.$xvalue]['tmp_name'][$j];
+                                $image_file_type1 = pathinfo($_FILES['image'.$xvalue]["name"][$j],PATHINFO_EXTENSION);
+                                $newFilePath1 = 'image'.time().rand('0000','9999').'.'.$image_file_type1;
+                                if(move_uploaded_file($tmpFilePath1, 'uploads/showroom_media/'.$newFilePath1)) {
+                                    $images[] = $newFilePath1;
+                                }    
+                            }
+                          }
+                           
+                       
+
+                          $img12 = '';
+                          if(!empty($images)){
+                             $img12 = implode(',', $images);   
+                          }
+                         
+                            $updatedata = array();
+                            $updatedata['showroom_id'] = $comid;
+                            $updatedata['is_showrooms_coordinates'] = '1';
+                            $updatedata['image360_id'] =  $imgid;
+                            $updatedata['xval'] = $_POST['xval'.$xvalue];
+                            $updatedata['yval'] = $_POST['yval'.$xvalue];
+                            $updatedata['zval'] = $_POST['zval'.$xvalue];
+                            $updatedata['info'] = $_POST['coordinate_360_info'.$xvalue];
+                            $updatedata['product_name'] = $_POST['product_name'.$xvalue];
+                            $updatedata['image'] = $img12;
+                            $updatedata['created_at'] = time();
+                            $this->dynamic_model->deletedata('furiture_product', array('image360_id'=>$imgid)); 
+                            
+                            $colorId = $this->dynamic_model->insertdata('furiture_product', $updatedata); 
+                            
+                            $updatedata = array();
+                           
+                            if(!empty($_POST['modals_color'.$xvalue])){
+                                foreach ($_POST['modals_color'.$xvalue] as $key => $modelcolor) {
+                                     //3d modals
+                      
+                                    $modals ='';
+                                      if(!empty($_FILES['3dmodals'.$xvalue]['name'][$key])){
+                                       
+                                            $tmpFilePath2 = $_FILES['3dmodals'.$xvalue]['tmp_name'][$key];
+
+                                            $image_file_type2 = pathinfo($_FILES["3dmodals".$xvalue]["name"][$key],PATHINFO_EXTENSION);
+                                             $newFilePath2 = '3dmodals'.time().rand('0000','9999').'.'.$image_file_type2;
+                                            if(move_uploaded_file($tmpFilePath2, 'uploads/showroom_media/'.$newFilePath2)) {
+                                                $modals = $newFilePath2;
+                                            }    
+                                        
+                                      }
+                                   $this->dynamic_model->insertdata('furitureshowroom_3d_models', array('modals3d'=>$modals,'color'=>$_POST['modals_color'.$xvalue][$key],'img360_id' =>$colorId)); 
+                                           
+                                }
+                            }
+                        }
+                    }  
+                
+                $this->session->set_flashdata('updateclass', 'success');
+                $this->session->set_flashdata('updateerror', $this->lang->line('showroom_add'));
+                redirect(site_url().'admin/furnitureshowrooms/image360list/'.$cid);  
+            }           
+        } else {
+             $this->session->set_flashdata('updateclass', 'danger');
+             $this->session->set_flashdata('updateerror', 'SomeProble in Server. Please Try Again');
+            redirect(site_url().'admin/furnitureshowrooms/image360list/'.$cid);                    
+        }     
+    }
    
          public function updateimage360($cid){
         // echo '<pre>';

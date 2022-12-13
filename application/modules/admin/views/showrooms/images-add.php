@@ -62,9 +62,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     <div class="col-md-6">
                        <label for="inputName1" class="col-sm-3 control-label">Thumbnail Image 360</label>
-                       <input type="hidden" name="thumbnail[]" value="0">
+                       <input type="hidden" name="thumbnail" value="0">
                      
-                      <input type="file" style="width:247px" name="thumbnail360" required class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
+                      <input type="file" style="width:247px" name="thumbnail" required class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
                       <br>
                     </div>
                   </div>
