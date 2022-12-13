@@ -23,7 +23,7 @@ class FurnitureShowrooms extends My_Controller {
         if(!empty($user_id) && !empty($uid)){
             $loguserinfo['cid'] = $uid;
             $header['title'] = $this->lang->line('title_showroom_list');
-            $this->admintemplates('furnitureShowrooms/showrooms_list', $loguserinfo, $header);
+            $this->admintemplates('furnitureshowrooms/showrooms_list', $loguserinfo, $header);
         } else{
             redirect(base_url('admin/companies'));
         }
@@ -188,7 +188,7 @@ class FurnitureShowrooms extends My_Controller {
 
 
             $header['title'] = $this->lang->line('btn_update_details');
-            $this->admintemplates('furnitureShowrooms/showroom-update', $loguserinfo, $header);
+            $this->admintemplates('furnitureshowrooms/showroom-update', $loguserinfo, $header);
         } else{
             redirect(base_url('admin/companies'));
         }
@@ -202,7 +202,7 @@ class FurnitureShowrooms extends My_Controller {
 
             $loguserinfo['cid'] = $cid;
             $header['title'] = $this->lang->line('title_add_showroom');
-            $this->admintemplates('furnitureShowrooms/showroom-add', $loguserinfo, $header);
+            $this->admintemplates('furnitureshowrooms/showroom-add', $loguserinfo, $header);
     }
 
     
@@ -636,7 +636,7 @@ class FurnitureShowrooms extends My_Controller {
         if(!empty($user_id) && !empty($uid)){
             $loguserinfo['cid'] = $uid;
             $header['title'] = $this->lang->line('images_360_list');
-            $this->admintemplates('furnitureShowrooms/images-list', $loguserinfo, $header);
+            $this->admintemplates('furnitureshowrooms/images-list', $loguserinfo, $header);
         } else{
             redirect(base_url('admin/companies'));
         }
@@ -650,7 +650,7 @@ class FurnitureShowrooms extends My_Controller {
 
             $loguserinfo['cid'] = $cid;
             $header['title'] = $this->lang->line('title_add_360image');
-            $this->admintemplates('furnitureShowrooms/images-add', $loguserinfo, $header);
+            $this->admintemplates('furnitureshowrooms/images-add', $loguserinfo, $header);
     }
 
 
@@ -908,7 +908,7 @@ class FurnitureShowrooms extends My_Controller {
 
                $data['data'] = $this->db->select('*')->where($where2)->get('showroom_furniuture360_image')->row_array();
 
-               $this->admintemplates('furnitureShowrooms/images-edit',$data,$loguserinfo, $header);
+               $this->admintemplates('furnitureshowrooms/images-edit',$data,$loguserinfo, $header);
             }
         }
 
