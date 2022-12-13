@@ -66,7 +66,7 @@
         // console.log(cid)
 
         var sort_table = [0,1,2,3];
-        var postListingUrl =  BASEURL+"admin/furnitureshowrooms/imageAjaxlist/"+cid;
+        var postListingUrl =  BASEURL+"admin/FurnitureShowrooms/imageAjaxlist/"+cid;
         var table = setTable('#userList',postListingUrl,sort_table);
     });
 
