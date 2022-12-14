@@ -328,7 +328,7 @@ class Showroom extends CI_Controller
 
 	//Update favourite status from product table
 	 public function Addfavourite(){
-
+    
 	 	$input = $this->input->post();
 	  if ($input['id'] !== '' && $input['favourite_status'] !== '') {
 	 
@@ -380,7 +380,7 @@ class Showroom extends CI_Controller
 
 
    public function Fetchfavourite(){
-
+    $arg = array();
 	  $result = $this->db->select('*')->where('favourite_status !=','no')->get('product')->result_array();
     if(!empty($result)){
     	foreach ($result as $key => $value) {
@@ -391,11 +391,27 @@ class Showroom extends CI_Controller
 
     	}
     }
-      echo json_encode($result);
+
+    if(!$result){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $result;
+			$arg['message'] = "Showrooms listed successfully.";
+		}
+
+      echo json_encode($arg);
     }
 
    public function Fetchfavourite_furniture(){
-
+    $arg = array();
+	
 	  $result = $this->db->select('*')->where('favourite_status !=','no')->get('furiture_product')->result_array();
     if(!empty($result)){
     	foreach ($result as $key => $value) {
@@ -409,8 +425,20 @@ class Showroom extends CI_Controller
 
     	}
     }
-
-      echo json_encode($result);
+     if(!$result){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $result;
+			$arg['message'] = "Showrooms listed successfully.";
+		}
+      echo json_encode($arg);
     }
 
 
