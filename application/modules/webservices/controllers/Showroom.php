@@ -43,10 +43,14 @@ class Showroom extends CI_Controller
         if(!empty($data)){
         	foreach ($data as $key => $value) {
         		$data[$key]['showrooms'] =$this->db->where('company_id',$value['id'])->where('status','Active')->get('manage_showroom_furiture')->result_array();
-        		// $data[$key]['retailers'] =$this->db->where('company_id',$value['id'])->get('company_retailers')->result_array();
+        		$data[$key]['retailers'] =$this->db->where('company_id',$value['id'])->get('company_retailers')->result_array();
+        		$data[$key]['products'] =$this->db->select('p.*')->from('furiture_product as p')->join('manage_showroom_furiture as m','m.id = p.showroom_id')->where('m.company_id',$value['id'])->where('p.favourite_status','yes')->get()->result_array();
+
+
         	}
         }
-      	if(!$data){
+        print_r($data); die;
+     if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
 			$arg['error_line'] = __line__;
@@ -70,8 +74,11 @@ class Showroom extends CI_Controller
         if(!empty($data)){
         	foreach ($data as $key => $value) {
         		$data[$key]['showrooms'] =$this->db->where('company_id',$value['id'])->where('status','Active')->get('manage_showroom_list')->result_array();
+        			$data[$key]['products'] =$this->db->select('p.*')->from('product as p')->join('manage_showroom_list as m','m.id = p.showroom_id')->where('m.company_id',$value['id'])->where('p.favourite_status','yes')->get()->result_array();
         	}
         }
+
+        print_r($data); die;
       	if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;

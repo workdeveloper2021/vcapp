@@ -387,7 +387,7 @@ class Showrooms extends My_Controller {
                 } else {
                     $updateuserpic = 'userdefault.png';
                 }
-
+ 
                
                 $file_ext = pathinfo($_FILES["updatevideo"]["name"], PATHINFO_EXTENSION);
                 if (!empty($_FILES['updatevideo']['name'])) {
