@@ -43,7 +43,7 @@ class Showroom extends CI_Controller
         if(!empty($data)){
         	foreach ($data as $key => $value) {
         		$data[$key]['showrooms'] =$this->db->where('company_id',$value['id'])->where('status','Active')->get('manage_showroom_furiture')->result_array();
-        		$data[$key]['retailers'] =$this->db->where('company_id',$value['id'])->get('company_retailers')->result_array();
+        		// $data[$key]['retailers'] =$this->db->where('company_id',$value['id'])->get('company_retailers')->result_array();
         	}
         }
       	if(!$data){
@@ -183,7 +183,6 @@ class Showroom extends CI_Controller
         		$data[$key]['coordinates'] =$image;
         	}
         }
-
 		if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
@@ -217,6 +216,8 @@ class Showroom extends CI_Controller
 
         	}
         }
+
+
 		if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
@@ -250,6 +251,7 @@ class Showroom extends CI_Controller
 
         	}
         }
+
 		if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
@@ -278,6 +280,7 @@ class Showroom extends CI_Controller
 						$data['coordinates'][$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('furitureshowroom_3d_models')->result_array();
 				}
 			}
+
 		if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
@@ -376,11 +379,37 @@ class Showroom extends CI_Controller
     //Get all favourite status from product table
 
 
-     public function Fetchfavourite(){
+   public function Fetchfavourite(){
 
 	  $result = $this->db->select('*')->where('favourite_status !=','no')->get('product')->result_array();
+    if(!empty($result)){
+    	foreach ($result as $key => $value) {
+    		// print_r($value['image360_id']); die;
+    		 $result[$key]['image360_details'] = $this->db->select('*')->where('id',$value['image360_id'])->get('showroom_360_image')->row();
 
-	  //print_r($result);
+    		  // $result[$key]['models'] =  $this->db->where('img360_id',$value['id'])->get('showroom_3d_models')->result_array();
+
+    	}
+    }
+      echo json_encode($result);
+    }
+
+   public function Fetchfavourite_furniture(){
+
+	  $result = $this->db->select('*')->where('favourite_status !=','no')->get('furiture_product')->result_array();
+    if(!empty($result)){
+    	foreach ($result as $key => $value) {
+    		// print_r($value['image360_id']); die;
+    		 $showroom = $this->db->select('*')->where('id',$value['showroom_id'])->get('manage_showroom_furiture')->row();
+    		 $result[$key]['company'] = $this->db->select('*')->where('id',$showroom->company_id)->get('manage_company_furniture')->row();
+
+          $result[$key]['retailers'] = $this->db->select('*')->where('id',$showroom->company_id)->get('company_retailers')->result_array();
+
+    		  // $result[$key]['models'] =  $this->db->where('img360_id',$value['id'])->get('showroom_3d_models')->result_array();
+
+    	}
+    }
+
       echo json_encode($result);
     }
 
