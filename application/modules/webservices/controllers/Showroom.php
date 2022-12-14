@@ -49,7 +49,6 @@ class Showroom extends CI_Controller
 
         	}
         }
-        print_r($data); die;
      if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
@@ -78,7 +77,6 @@ class Showroom extends CI_Controller
         	}
         }
 
-        print_r($data); die;
       	if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
