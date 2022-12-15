@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option value="">Select Location</option>
                         <?php foreach ($locations as $key => $value) {
                           ?>
-                            <option value="<?php echo $value["id"]; ?>" <?php if($value["id"]==$companyinfo[0]['location']){ ?> selected <?php } ?> ><?php echo $value["location"]; ?></option>
+                            <option value="<?php echo $value["location"]; ?>" <?php if($value["location"]==$companyinfo[0]['location']){ ?> selected <?php } ?> ><?php echo $value["location"]; ?></option>
                           <?php
                         } ?>
                       </select>
@@ -101,3 +101,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </section>
     </div>
+
+    <script type="text/javascript">
+
+        function add_file()
+        {
+         $("#file_div").append(`
+                  <div>     
+                    <hr style="border-top: 3px solid rgba(0,0,0,.1);">
+             
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label for="inputName1" class="control-label"><?php echo $this->lang->line('company_retailer_name'); ?></label>
+                        <input type='text' name='retail_name[]' class='form-control' required="" />
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="inputName1" class="control-label"><?php echo $this->lang->line('company_retailer_email'); ?></label>
+                        <input type='email' name='retail_email[]' class='form-control' required="" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                          <label for="inputName" class="control-label"><?php echo $this->lang->line('company_retailer_country'); ?>
+                          </label>
+
+                          <select name="retailer_country[]" class="form-control" id="inputName" required="">
+                            <option value="">Select Country</option>
+                            <?php foreach ($locations as $key => $value) {
+                              ?>
+                                <option value="<?php echo $value["location"]; ?>" ><?php echo $value["location"]; ?></option>
+                              <?php
+                            } ?>
+                          </select>
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="inputName1" class="control-label"><?php echo $this->lang->line('company_retailer_city'); ?></label>
+                        <input type='text' name='retail_city[]' class='form-control' required="" />
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <input type='button' class='btn btn-danger'  value='REMOVE' onclick=remove_file(this);>
+                    </div>
+                  </div>
+
+                  `);
+           $( document ).ready(function() {
+              console.log( "ready!" );
+          });
+
+        }
+
+
+      function remove_file(ele)
+      {
+       $(ele).parent().parent().remove();
+      }
+
+
+
+     $( document ).ready(function() {
+
+        
+
+
+    })
+
+
+
+    </script>
