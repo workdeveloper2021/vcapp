@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option value="">Select Location</option>
                         <?php foreach ($locations as $key => $value) {
                           ?>
-                            <option value="<?php echo $value["location"]; ?>" ><?php echo $value["location"]; ?></option>
+                            <option value="<?php echo $value["id"]; ?>" ><?php echo $value["location"]; ?></option>
                           <?php
                         } ?>
                       </select>
@@ -107,7 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <option value="">Select Country</option>
                             <?php foreach ($locations as $key => $value) {
                               ?>
-                                <option value="<?php echo $value["id"]; ?>" ><?php echo $value["location"]; ?></option>
+                                <option value="<?php echo $value["location"]; ?>" ><?php echo $value["location"]; ?></option>
                               <?php
                             } ?>
                           </select>

@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option value="">Select Location</option>
                         <?php foreach ($locations as $key => $value) {
                           ?>
-                            <option value="<?php echo $value["location"]; ?>" <?php if($value["location"]==$companyinfo[0]['location']){ ?> selected <?php } ?> ><?php echo $value["location"]; ?></option>
+                            <option value="<?php echo $value["location"]; ?>" <?php if($value["location"]==$companyinfo[0]['id']){ ?> selected <?php } ?> ><?php echo $value["location"]; ?></option>
                           <?php
                         } ?>
                       </select>
