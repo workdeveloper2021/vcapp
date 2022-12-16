@@ -936,12 +936,12 @@ class Showrooms extends My_Controller {
                 
                 $this->session->set_flashdata('updateclass', 'success');
                 $this->session->set_flashdata('updateerror', $this->lang->line('showroom_add'));
-                redirect(site_url().'admin/showrooms/image360list/'.$cid);  
+                redirect($_SERVER['HTTP_REFERER']);  
             }           
         } else {
              $this->session->set_flashdata('updateclass', 'danger');
              $this->session->set_flashdata('updateerror', 'SomeProble in Server. Please Try Again');
-            redirect(site_url().'admin/showrooms/image360list/'.$cid);                    
+            redirect($_SERVER['HTTP_REFERER']);                    
         }     
     }
 

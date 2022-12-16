@@ -977,7 +977,7 @@ class FurnitureShowrooms extends My_Controller {
                 
 
 
-                $updatedata['showroom_id'] = $comid;
+                $updatedata['showroom_id'] = $showroom_id;
                 $updatedata['description'] = $description;
                 $updatedata['retaileremail'] = $retaileremail;
                 $updatedata['retailer1'] = $retailer;
@@ -1005,7 +1005,7 @@ class FurnitureShowrooms extends My_Controller {
                           }
                          
                             $updatedata = array();
-                            // $updatedata['showroom_id'] = $comid;
+                            $updatedata['showroom_id'] = $showroom_id;
                             $updatedata['is_showrooms_coordinates'] = '1';
                             $updatedata['image360_id'] =  $comid;
                             $updatedata['xval'] = $_POST['xval'.$xvalue];
@@ -1046,12 +1046,12 @@ class FurnitureShowrooms extends My_Controller {
                 
                 $this->session->set_flashdata('updateclass', 'success');
                 $this->session->set_flashdata('updateerror', $this->lang->line('showroom_add'));
-                redirect(site_url().'admin/FurnitureShowrooms/image360list/'.$cid);  
+                redirect($_SERVER['HTTP_REFERER']);  
             }           
         } else {
              $this->session->set_flashdata('updateclass', 'danger');
              $this->session->set_flashdata('updateerror', 'SomeProble in Server. Please Try Again');
-            redirect(site_url().'admin/FurnitureShowrooms/image360list/'.$cid);                    
+            redirect($_SERVER['HTTP_REFERER']);                    
         }     
     }
    
