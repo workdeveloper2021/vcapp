@@ -893,7 +893,7 @@ class FurnitureShowrooms extends My_Controller {
         $uid =  decode($user_id);
         if(!empty($user_id) && !empty($uid)){
             $where2 = "id ='".$uid."'";
-            $userdata2=$this->dynamic_model->deletedata('showroom_360_image',$where2); 
+            $userdata2=$this->dynamic_model->deletedata('showroom_furniuture360_image',$where2); 
             echo $userdata2;
         }
        redirect($_SERVER["HTTP_REFERER"]);
