@@ -870,9 +870,8 @@ class Showrooms extends My_Controller {
                 $updatedata['showroom_id'] = $comid;
                 $updatedata['description'] = $description;
                 $updatedata['retaileremail'] = $retaileremail;
-                $updatedata['retailer1'] = $retailer;
-                $imgid = $imgid; 
-                $this->dynamic_model->updatedata('showroom_360_image', $updatedata,$imgid);
+                $updatedata['retailer1'] = $retailer; 
+                $this->dynamic_model->updatedata('showroom_360_image', $updatedata,$comid);
                  if(!empty($nos360)){
                         foreach ($nos360 as $key => $xvalue) {
                         $ddt = $_POST['codeno'.$xvalue];
@@ -906,7 +905,7 @@ class Showrooms extends My_Controller {
                             $updatedata['product_name'] = $_POST['product_name'.$xvalue];
                             $updatedata['image'] = $img12;
                             $updatedata['created_at'] = time();
-                            $this->dynamic_model->deletedata('product', array('image360_id'=>$imgid)); 
+                            $this->dynamic_model->deletedata('product', array('image360_id'=>$comid)); 
                             
                             $colorId = $this->dynamic_model->insertdata('product', $updatedata); 
                             

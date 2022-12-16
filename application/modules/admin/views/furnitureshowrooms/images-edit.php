@@ -59,7 +59,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <br>
                           <img src="<?= site_url()?>uploads/showroom_media/<?= $data['reatilerimage']?>" style="width: 50px; height: 50px;">
                       </div>
-                      <input type="hidden" name="imgid" value="<?= $data['id']?>">
                   </div><br>
                 <div class="row">
                     <div class="col-md-6">
