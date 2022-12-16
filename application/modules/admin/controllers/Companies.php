@@ -211,21 +211,17 @@ class Companies extends My_Controller {
             } else {
                 $updatedata = array();
                 $userid = $updateid;
-                $file_ext = pathinfo($_FILES["updateuserpic"]["name"], PATHINFO_EXTENSION);
-                if (!empty($_FILES['updateuserpic']['name'])) {
+                if ($_FILES['updateuserpic']['size']>0) {
                     // check for valid file to upload 
-                    $file_ext=strtolower($file_ext);
-                    if(!in_array($file_ext, $allowedExts)){
-                        $this->session->set_flashdata('updateclass', 'danger');
-                        $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/companies/companyprofile/'.encode($updateid)); 
-                     
-                    }
-                    $img_name = $this->dynamic_model->fileupload('updateuserpic', 'uploads/company_media', 'Picture');
-                } else {
-                    $img_name = $this->input->post('oldpic');
-                }
 
+                    $tmpFilePath2 = $_FILES['updateuserpic']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["updateuserpic"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'image360'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/company_media/'.$newFilePath2)) {
+                       $updatedata['thumbnail'] = $newFilePath2;
+                    }
+                }
                 $file_ext = pathinfo($_FILES["updatevideo"]["name"], PATHINFO_EXTENSION);
                 if (!empty($_FILES['updatevideo']['name'])) {
                     // check for valid file to upload 
@@ -249,7 +245,6 @@ class Companies extends My_Controller {
                 $updatedata['company_name'] = $updatename;
                 $updatedata['location'] = $updatelocation;
                 $updatedata['info'] = $updateinfo;
-                $updatedata['thumbnail'] = $img_name;
                 $updatedata['video_url'] = $vid_name;
                 $this->dynamic_model->updatedata('manage_company_list', $updatedata, $userid); 
                 $this->session->set_flashdata('updateclass', 'success');
@@ -285,20 +280,18 @@ class Companies extends My_Controller {
                 redirect(site_url().'admin/companies/addCompany');
             } else {
                 $updatedata = array();
-                $file_ext = pathinfo($_FILES["updateuserpic"]["name"], PATHINFO_EXTENSION);
-                if (!empty($_FILES['updateuserpic']['name'])) {
-                    // check for valid file to upload 
-                    $file_ext=strtolower($file_ext);
-                    if(!in_array($file_ext, $allowedExts)){
-                        $this->session->set_flashdata('updateclass', 'danger');
-                        $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/companies/addCompany'); 
+                if ($_FILES['updateuserpic']['size'] >0) {
+                   
+                    $tmpFilePath2 = $_FILES['updateuserpic']['tmp_name'];
+
+                    $image_file_type2 = pathinfo($_FILES["updateuserpic"]["name"],PATHINFO_EXTENSION);
+                     $newFilePath2 = 'image360'.time().rand('0000','9999').'.'.$image_file_type2;
+                    if(move_uploaded_file($tmpFilePath2, 'uploads/company_media/'.$newFilePath2)) {
+                        $img_name = $newFilePath2;
                     }
-                    $img_name = $this->dynamic_model->fileupload('updateuserpic', 'uploads/company_media', 'Picture');
                 } else {
                     $img_name = 'userdefault.png';
                 }
-
                 $file_ext = pathinfo($_FILES["updatevideo"]["name"], PATHINFO_EXTENSION);
                 if (!empty($_FILES['updatevideo']['name'])) {
                     // check for valid file to upload 
