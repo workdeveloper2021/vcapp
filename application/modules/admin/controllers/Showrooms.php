@@ -867,7 +867,7 @@ class Showrooms extends My_Controller {
                 
 
 
-                $updatedata['showroom_id'] = $comid;
+                $updatedata['showroom_id'] = $showroom_id;
                 $updatedata['description'] = $description;
                 $updatedata['retaileremail'] = $retaileremail;
                 $updatedata['retailer1'] = $retailer; 
@@ -895,7 +895,7 @@ class Showrooms extends My_Controller {
                           }
                          
                             $updatedata = array();
-                            $updatedata['showroom_id'] = $comid;
+                            $updatedata['showroom_id'] = $showroom_id;
                             $updatedata['is_showrooms_coordinates'] = '1';
                             $updatedata['image360_id'] =  $imgid;
                             $updatedata['xval'] = $_POST['xval'.$xvalue];
