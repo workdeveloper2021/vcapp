@@ -49,6 +49,10 @@
               <th nowrap=""> <input type="checkbox" name="checkAll[]" id="checkall"></th>
               <th nowrap="">Description</th>
               <th nowrap="">360image</th>
+              <th nowrap="">Thumbnail</th>
+              <th nowrap="">Retailer</th>
+              <th nowrap="">Retailer Image</th>
+              <th nowrap="">Retailer Email</th>
               <th nowrap=""><?php echo $this->lang->line('tb_action'); ?></th>
 
             </tr>

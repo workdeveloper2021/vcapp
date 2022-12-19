@@ -66,10 +66,11 @@
         var sort_table = [0,1,2,4,7,8,10];
         var postListingUrl =  BASEURL+"admin/companies/companyAjaxlist";
 
-                      $('#userList').dataTable({
-                              "bDestroy": true,
-                              "scrollX": true
-                     }).fnDestroy(); 
+        $('#userList').dataTable({
+                "bDestroy": true,
+                "scrollX": true,
+                
+       }).fnDestroy(); 
 
         var table = setTable('#userList',postListingUrl,sort_table);
     });

@@ -985,8 +985,17 @@ class Showrooms extends My_Controller {
                         $user_pic = '';
                      }
                     $recordListing[$i][2]= '<img src="'.$user_pic.'" width="40" height="40">';
+                    $recordListing[$i][3]= $recordData->retailer1;
+                    $recordListing[$i][4]= $recordData->reatilerimage;
+                    if(!empty($recordData->reatilerimage)){
+                        $re_pic = base_url('uploads/showroom_media/').$recordData->reatilerimage;
+                     }else{
+                        $re_pic = '';
+                     }
+                    $recordListing[$i][5]= '<img src="'.$re_pic.'" width="40" height="40">';
                      
                    
+                    $recordListing[$i][6]= $recordData->retaileremail;
                    
                     $table = 'manage_showroom_list';
                     $field = 'status';
@@ -1017,7 +1026,7 @@ class Showrooms extends My_Controller {
                      $actionContent .='<a href="'.$edit_url.'" title="Delete" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-edit"></i></a> ';  
                   
                      // }
-                    $recordListing[$i][3]= $actionContent;
+                    $recordListing[$i][7]= $actionContent;
                    
                     $i++;
                     $srNumber++;
