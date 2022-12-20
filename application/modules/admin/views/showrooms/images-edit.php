@@ -100,11 +100,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <textarea  name="coordinate_360_info0"  class="form-control" placeholder="Info text"><?= $cod[0]['info'] ?></textarea>
                           </div>
                           <div class="col-sm-2">
-                             <input type="text" class="form-control" name="product_name0" placeholder="Product Name">
+                             <input type="text" class="form-control" name="product_name0" placeholder="Product Name" value="<?= $cod[0]['product_name'] ?>">
                           </div>
                           <div class="col-md-3">
                               <label for="inputName1" class="control-label">Images</label>
                               <input type="file" style="width:247px" name="image0[]"  class="form-control" id="inputName" multiple  accept="image/x-png,image/gif,image/jpeg" / >
+                              <input type="hidden" name="oldimg0" value="<?= $cod[0]['image'] ?>">
                           </div>
                           <?php 
                             $modal2 = $this->db->where('img360_id' ,$cod[0]['id'])->get('showroom_3d_models')->result_array();
@@ -116,6 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                  <div class="col-md-4">
                                   <label for="inputName1" class="control-label">3D Modals</label>
                                   <input type="file" style="width:247px" name="3dmodals0[]"  class="form-control" id="inputName1" multiple / >
+                                  <input type="hidden" name="oldmodal0[]" value="<?= $modal2[0]['modals3d']?>">
                                   <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal2[0]['modals3d']?>"><?= $modal2[0]['modals3d']?></a>
                                   </div>
 
@@ -153,6 +155,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="col-md-4">
                                   <label for="inputName1" class="control-label">3D Modals</label>
                                   <input type="file" style="width:247px" name="3dmodals0[]" class="form-control" id="inputName1">
+
+                                  <input type="hidden" name="oldmodal0[]" value="<?= $modal2[$kyy]['modals3d']?>">
                                    <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal2[$kyy]['modals3d']?>"><?= $modal2[$kyy]['modals3d']?></a>
                                 </div>
                                 <div class="col-md-4">
@@ -199,6 +203,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-3">
                       <label for="inputName1" class="control-label">Images</label>
                       <input type="file" style="width:247px" name="image<?= $key+1 ?>[]" class="form-control" id="inputName1" multiple accept="image/x-png,image/gif,image/jpeg" />
+
+                      <input type="hidden" name="oldimg<?= $key+1 ?>" value="<?= $cod[$key]['image'] ?>">
                     </div>
                     <?php 
                       $modal = $this->db->where('img360_id' ,$cod[$key]['id'])->get('showroom_3d_models')->result_array();
@@ -209,6 +215,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-4">
                           <label for="inputName1" class="control-label">3D Modals</label>
                           <input type="file" style="width:247px" name="3dmodals<?= $key+1 ?>[]"  class="form-control" id="inputName1" />
+                           <input type="hidden" name="oldmodal<?= $key+1 ?>[]" value="<?= $modal[0]['modals3d']?>">
+                                 
                            <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal[0]['modals3d']?>"><?= $modal[0]['modals3d']?></a>
                         </div>
                         <div class="col-md-4">
@@ -228,6 +236,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="col-md-4">
                         <label for="inputName1" class="control-label">3D Modals</label>
                         <input type="file" style="width:247px" name="3dmodals<?= $key+1 ?>[]" class="form-control" id="inputName1">
+                        <input type="hidden" name="oldmodal<?= $key+1 ?>[]" value="<?= $modal[$kyy]['modals3d']?>">
+                           
                         <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal[$kyy]['modals3d']?>"><?= $modal[$kyy]['modals3d']?></a>
                       </div>
                       <div class="col-md-4">
@@ -272,7 +282,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 var noc = '<?= count($cod)+1 ?>';
 function add_coodi(no){
   
-     $(".showcod"+no).after('<div style="padding:15px 0px" class="row showcod'+ noc +' removecla'+ noc +'"><input type="hidden" name="nos360[]" value="'+ noc +'"><div class="col-sm-4"> X : <input type="number" required step="0.00000001" name="xval'+ noc +'" style="width:20%"> Y : <input type="number" required step="0.00000001" name="yval'+ noc +'" style="width:20%"> Z : <input type="number" required step="0.00000001" name="zval'+ noc +'" style="width:20%"></div><div class="col-sm-3"><textarea required style="width: 1200px;" name="coordinate_360_info'+ noc +'" class="form-control" placeholder="Info text"></textarea></div> <div class="col-sm-2"><input type="text" class="form-control" name="product_name'+ noc +'" placeholder="Product Name"></div><div class="col-md-3"> <label for="inputName1" class="control-label">Images</label> <input type="file" style="width:247px" name="image'+ noc +'[]" class="form-control" id="inputName1" multiple accept="image/x-png,image/gif,image/jpeg" / > </div> <div id="education_fields'+ noc +'"> <div class="row"> <div class="col-md-4"> <label for="inputName1" class="control-label">3D Modals</label> <input type="file" style="width:247px" name="3dmodals'+ noc +'" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <label for="inputName1" class="control-label">Modals Color</label> <input type="color" style="width:247px" name="modals_color'+ noc +'" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <button style="margin: 30px 21px; float: left;" class="btn btn-success" type="button" onclick="education_fields('+ noc +');">+</button> </div> </div> </div>  <div class="col-sm-12" style="text-align:right"><button class="btn btn-danger" type="button" onclick="remove_education_fields2('+ noc +');"> Remove</button></div></div>'); 
+     $(".showcod"+no).after('<div style="padding:15px 0px" class="row showcod'+ noc +' removecla'+ noc +'"><input type="hidden" name="nos360[]" value="'+ noc +'"><div class="col-sm-4"> X : <input type="number" required step="0.00000001" name="xval'+ noc +'" style="width:20%"> Y : <input type="number" required step="0.00000001" name="yval'+ noc +'" style="width:20%"> Z : <input type="number" required step="0.00000001" name="zval'+ noc +'" style="width:20%"></div><div class="col-sm-3"><textarea required style="width: 1200px;" name="coordinate_360_info'+ noc +'" class="form-control" placeholder="Info text"></textarea></div> <div class="col-sm-2"><input type="text" class="form-control" name="product_name'+ noc +'" placeholder="Product Name"></div><div class="col-md-3"> <label for="inputName1" class="control-label">Images</label> <input type="file" style="width:247px" name="image'+ noc +'[]" class="form-control" id="inputName1" multiple accept="image/x-png,image/gif,image/jpeg" / > <input type="hidden" name="oldimg'+ noc +'" ></div> <div id="education_fields'+ noc +'"> <div class="row"> <div class="col-md-4"> <label for="inputName1" class="control-label">3D Modals</label> <input type="file" style="width:247px" name="3dmodals'+ noc +'" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <label for="inputName1" class="control-label">Modals Color</label> <input type="color" style="width:247px" name="modals_color'+ noc +'" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <button style="margin: 30px 21px; float: left;" class="btn btn-success" type="button" onclick="education_fields('+ noc +');">+</button> </div> </div> </div>  <div class="col-sm-12" style="text-align:right"><button class="btn btn-danger" type="button" onclick="remove_education_fields2('+ noc +');"> Remove</button></div></div>'); 
       noc++;
 
 }
@@ -293,7 +303,7 @@ function education_fields(no) {
     var divtest = document.createElement("div");
   divtest.setAttribute("class", "row form-group removeclass"+room);
   var rdiv = 'removeclass'+room;
-    divtest.innerHTML = ' <div class="col-md-4"> <label for="inputName1" class="control-label">3D Modals</label> <input type="file" style="width:247px" name="3dmodals'+no+'[]" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <label for="inputName1" class="control-label">Modals Color</label> <input type="color" style="width:247px" name="modals_color'+no+'[]" class="form-control" id="inputName1" / > </div><div class="col-md-4"><button style="margin: 30px 21px;" class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> Remove</button></div>';
+    divtest.innerHTML = ' <div class="col-md-4"> <label for="inputName1" class="control-label">3D Modals</label> <input type="file" style="width:247px" name="3dmodals'+no+'[]" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <label for="inputName1" class="control-label">Modals Color</label> <input type="color" style="width:247px" name="modals_color'+no+'[]" class="form-control" id="inputName1" / > <input type="hidden" name="oldmodal'+no+'[]" ></div><div class="col-md-4"><button style="margin: 30px 21px;" class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> Remove</button></div>';
     
     objTo.appendChild(divtest)
 }

@@ -872,12 +872,14 @@ class Showrooms extends My_Controller {
                 $updatedata['retaileremail'] = $retaileremail;
                 $updatedata['retailer1'] = $retailer; 
                 $this->dynamic_model->updatedata('showroom_360_image', $updatedata,$comid);
+
                  if(!empty($nos360)){
-                        $this->dynamic_model->deletedata('product', array('image360_id'=>$comid));
+                $this->dynamic_model->deletedata('product', array('image360_id'=>$comid)); 
+            
                         foreach ($nos360 as $key => $xvalue) {
-                        $ddt = $_POST['codeno'.$xvalue];
+                        // $ddt = $_POST['codeno'.$xvalue];
                         //image
-                          if(!empty($_FILES['image'.$xvalue]['name'])){
+                          if($_FILES['image'.$xvalue]['size'] > 0){
                             for ($j=0; $j <count($_FILES['image'.$xvalue]['name']) ; $j++) {
                                 $tmpFilePath1 = $_FILES['image'.$xvalue]['tmp_name'][$j];
                                 $image_file_type1 = pathinfo($_FILES['image'.$xvalue]["name"][$j],PATHINFO_EXTENSION);
@@ -893,6 +895,8 @@ class Showrooms extends My_Controller {
                           $img12 = '';
                           if(!empty($images)){
                              $img12 = implode(',', $images);   
+                          }else{
+                            // $img12 = $_POST['oldimg'.$xvalue];  
                           }
                          
                             $updatedata = array();
@@ -907,17 +911,17 @@ class Showrooms extends My_Controller {
                             $updatedata['image'] = $img12;
                             $updatedata['created_at'] = time();
                             
-                            
                             $colorId = $this->dynamic_model->insertdata('product', $updatedata); 
                             
                             $updatedata = array();
                            
                             if(!empty($_POST['modals_color'.$xvalue])){
+                                    $modals ='';
+                                
                                 foreach ($_POST['modals_color'.$xvalue] as $key => $modelcolor) {
                                      //3d modals
                       
-                                    $modals ='';
-                                      if(!empty($_FILES['3dmodals'.$xvalue]['name'][$key])){
+                                      if(!empty($_FILES['3dmodals'.$xvalue]['size'][$key]>0)){
                                        
                                             $tmpFilePath2 = $_FILES['3dmodals'.$xvalue]['tmp_name'][$key];
 
@@ -927,6 +931,8 @@ class Showrooms extends My_Controller {
                                                 $modals = $newFilePath2;
                                             }    
                                         
+                                      }else{
+                                          $modals = $_POST['oldmodal'.$xvalue][$key];
                                       }
                                    $this->dynamic_model->insertdata('showroom_3d_models', array('modals3d'=>$modals,'color'=>$_POST['modals_color'.$xvalue][$key],'img360_id' =>$colorId)); 
                                            
