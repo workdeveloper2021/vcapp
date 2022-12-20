@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="row">
    
     <div class="col-md-12">
-      <a href="<?php echo site_url();?>admin/FurnitureShowrooms/companyshowrooms/<?php echo $cid;?>" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+      <a href="<?php echo site_url();?>admin/showrooms/companyshowrooms/<?php echo $cid;?>" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
       <div class="card-box">
             <!-- <h4 class="header-title m-t-0 m-b-30"><?php echo $this->lang->line('basic_info'); ?></h4> -->
             <?php if ($this->session->flashdata('updateerror') != '') { 
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $attributes = array('class' => 'form-horizontal', 'id' => '', 'enctype' => 'multipart/form-data' );
               $hidden = array('is_submit' => 1);
               $parsle = 'data-parsley-validate novalidate';
-              echo form_open_multipart('admin/FurnitureShowrooms/imageUpdateSubmit/'.$cid, $attributes, $hidden);
+              echo form_open_multipart('admin/showrooms/imageUpdateSubmit/'.$cid, $attributes, $hidden);
               //echo "<pre>";print_r($userinfo);
 
 
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <input type="file" style="width:247px" name="update360pic"  class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
                       <br>
                       <?php
-                      $image360 = $this->db->select('*')->where(array('showroom_id'=>$data['showroom_id']))->get('showroom_furniuture360_image')->row_array(); 
+                      $image360 = $this->db->select('*')->where(array('showroom_id'=>$data['showroom_id']))->get('showroom_360_image')->row_array(); 
                       ?>
                       <img src="<?= site_url()?>uploads/showroom_media/<?= $image360['image360']?>" style="width:50px; height: 50px;">
                     <br><br>
@@ -84,17 +84,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <img src="<?= site_url()?>uploads/showroom_media/<?= $data['thumbnail']?>" style="width: 50px; height: 50px;">
                       <br>
                     </div>
+                    <?php 
+                       $cod = $this->db->where('image360_id' ,$data['id'])->get('product')->result_array();           
+                    ?>
                       <div class="col-md-12">
                        <div class="row showcod<?= count($product)+1 ?>">
                           <div class="col-sm-4">
                             <input type="hidden" name="codeno0[]" value="0" >
-                              X : <input type="number" step="0.00000001"  name="xval0" style="width:20%" >
-                              Y : <input type="number" step="0.00000001"  name="yval0" style="width:20%" >
-                              Z : <input type="number" step="0.00000001"  name="zval0" style="width:20%" >
+                              X : <input type="number" step="0.00000001"  name="xval0" value="<?= $cod[0]['xval'] ?>" style="width:20%" >
+                              Y : <input type="number" step="0.00000001"  name="yval0" value="<?= $cod[0]['yval'] ?>"  style="width:20%" >
+                              Z : <input type="number" step="0.00000001"  name="zval0" value="<?= $cod[0]['zval'] ?>"  style="width:20%" >
                           </div>
 
                           <div class="col-sm-3">
-                              <textarea  name="coordinate_360_info0"  class="form-control" placeholder="Info text"></textarea>
+                              <textarea  name="coordinate_360_info0"  class="form-control" placeholder="Info text"><?= $cod[0]['info'] ?></textarea>
                           </div>
                           <div class="col-sm-2">
                              <input type="text" class="form-control" name="product_name0" placeholder="Product Name">
@@ -103,7 +106,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <label for="inputName1" class="control-label">Images</label>
                               <input type="file" style="width:247px" name="image0[]"  class="form-control" id="inputName" multiple  accept="image/x-png,image/gif,image/jpeg" / >
                           </div>
+                          <?php 
+                            $modal2 = $this->db->where('img360_id' ,$cod[0]['id'])->get('showroom_3d_models')->result_array();
+                           ?>
+                          
+                           <?php if(!empty($modal2)){ ?>
                           <div id="education_fields0">
+                             <div  class="row">
+                                 <div class="col-md-4">
+                                  <label for="inputName1" class="control-label">3D Modals</label>
+                                  <input type="file" style="width:247px" name="3dmodals0[]"  class="form-control" id="inputName1" multiple / >
+                                  <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal2[0]['modals3d']?>"><?= $modal2[0]['modals3d']?></a>
+                                  </div>
+
+                                  <div class="col-md-4">
+                                      <label for="inputName1" class="control-label">Modals Color</label>
+                                      <input type="color" style="width:247px" name="modals_color0[]"  class="form-control" id="inputName1"  value="<?= $modal2[0]['color'] ?>" / >
+                                  </div>
+                                  <div class="col-md-4">
+                                     <button style="margin: 30px 21px; float: left;" class="btn btn-success" type="button"  onclick="education_fields(0);">+</button>
+                                   </div>
+                             </div>
+                           <?php }else{ ?>
+                            <div id="education_fields0">
                              <div  class="row">
                                  <div class="col-md-4">
                                   <label for="inputName1" class="control-label">3D Modals</label>
@@ -112,12 +137,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                   <div class="col-md-4">
                                       <label for="inputName1" class="control-label">Modals Color</label>
-                                      <input type="color" style="width:247px" name="modals_color0[]"  class="form-control" id="inputName1" multiple / >
+                                      <input type="color" style="width:247px" name="modals_color0[]"  class="form-control" id="inputName1"  value="" / >
                                   </div>
                                   <div class="col-md-4">
                                      <button style="margin: 30px 21px; float: left;" class="btn btn-success" type="button"  onclick="education_fields(0);">+</button>
                                    </div>
                              </div>
+                           <?php }  ?>
+                             <?php 
+                              if(!empty($modal2)){
+                                  for ($kyy=1; $kyy < count($modal2) ; $kyy++) { 
+                               
+                              ?>
+                              <div class="row form-group removeclass<?= $modal2[$kyy]['id'] ?>0">
+                                <div class="col-md-4">
+                                  <label for="inputName1" class="control-label">3D Modals</label>
+                                  <input type="file" style="width:247px" name="3dmodals0[]" class="form-control" id="inputName1">
+                                   <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal2[$kyy]['modals3d']?>"><?= $modal2[$kyy]['modals3d']?></a>
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="inputName1" class="control-label">Modals Color</label>
+                                  <input type="color" style="width:247px" name="modals_color0[]" class="form-control" id="inputName1" value="<?= $modal2[$kyy]['color'] ?>">
+                                </div>
+                                <div class="col-md-4">
+                                  <button style="margin: 30px 21px;" class="btn btn-danger" type="button" onclick="remove_education_fields(<?= $modal2[$kyy]['id'].'0' ?>);"> Remove</button>
+                                </div>
+                              </div>      
+
+                              <?php  } } ?>
                              
                           </div> 
                          
@@ -133,6 +180,72 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     
                   <!-- First add more end -->
                 </div>
+
+              <?php 
+              if(!empty($cod)){
+                for ($key=1; $key < count($cod) ; $key++) { 
+                  
+              ?>     
+                <div style="padding:15px 0px" class="row showcod<?= $key+1 ?>' removecla<?= $key+1 ?>">
+                    <input type="hidden" name="nos360[]" value="<?= $key+1 ?>">
+                    <div class="col-sm-4"> X : <input type="number" required step="0.00000001" value="<?= $cod[$key]['xval'] ?>" name="xval<?= $key+1 ?>" style="width:20%"> Y : <input type="number" value="<?= $cod[$key]['yval'] ?>" required step="0.00000001" name="yval<?= $key+1 ?>" style="width:20%"> Z : <input type="number" required step="0.00000001" value="<?= $cod[$key]['zval'] ?>" name="zval<?= $key+1 ?>" style="width:20%">
+                    </div>
+                    <div class="col-sm-3">
+                      <textarea required style="width: 1200px;" name="coordinate_360_info<?= $key+1 ?>" class="form-control" placeholder="Info text"><?= $cod[$key]['info'] ?></textarea>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" class="form-control" value="<?= $cod[$key]['product_name'] ?>" name="product_name<?= $key+1 ?>" placeholder="Product Name">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="inputName1" class="control-label">Images</label>
+                      <input type="file" style="width:247px" name="image<?= $key+1 ?>[]" class="form-control" id="inputName1" multiple accept="image/x-png,image/gif,image/jpeg" />
+                    </div>
+                    <?php 
+                      $modal = $this->db->where('img360_id' ,$cod[$key]['id'])->get('showroom_3d_models')->result_array();
+                   
+                     ?>
+                    <div id="education_fields<?= $key+1 ?>">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label for="inputName1" class="control-label">3D Modals</label>
+                          <input type="file" style="width:247px" name="3dmodals<?= $key+1 ?>[]"  class="form-control" id="inputName1" />
+                           <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal[0]['modals3d']?>"><?= $modal[0]['modals3d']?></a>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="inputName1" class="control-label">Modals Color</label>
+                          <input type="color" style="width:247px" name="modals_color<?= $key+1 ?>[]" value="<?= $modal[0]['color'] ?>" class="form-control" id="inputName1" />
+                        </div>
+                        <div class="col-md-4">
+                          <button style="margin: 30px 21px; float: left;" class="btn btn-success" type="button" onclick="education_fields(<?= $key+1 ?>);">+</button>
+                        </div>
+                      </div>
+                    <?php 
+                    if(!empty($modal)){
+                        for ($kyy=1; $kyy < count($modal) ; $kyy++) { 
+                  
+                    ?>
+                    <div class="row form-group removeclass<?= $modal[$kyy]['id'].$key ?>">
+                      <div class="col-md-4">
+                        <label for="inputName1" class="control-label">3D Modals</label>
+                        <input type="file" style="width:247px" name="3dmodals<?= $key+1 ?>[]" class="form-control" id="inputName1">
+                        <a download href="<?= site_url()?>uploads/showroom_media/<?= $modal[$kyy]['modals3d']?>"><?= $modal[$kyy]['modals3d']?></a>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="inputName1" class="control-label">Modals Color</label>
+                        <input type="color" style="width:247px" name="modals_color<?= $key+1 ?>[]" class="form-control" id="inputName1" value="<?= $modal[$kyy]['color'] ?>">
+                      </div>
+                      <div class="col-md-4">
+                        <button style="margin: 30px 21px;" class="btn btn-danger" type="button" onclick="remove_education_fields(<?= $modal[$kyy]['id'].$key ?>);"> Remove</button>
+                      </div>
+                    </div>      
+
+                    <?php  } } ?>
+                    </div>
+                    <div class="col-sm-12" style="text-align:right">
+                      <button class="btn btn-danger" type="button" onclick="remove_education_fields2(<?= $key+1 ?>);"> Remove</button>
+                    </div>
+                  </div>
+<?php  } } ?>
                 
                   
                  
@@ -140,7 +253,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                   <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-12">
-                      <button type="submit" class="btn btn-info"><?php echo $this->lang->line('btn_add_showroom'); ?></button>
+                      <button type="submit" class="btn btn-info">Update</button>
                     </div>
                   </div>
 
@@ -156,7 +269,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript">
 
 
-var noc = 1;
+var noc = '<?= count($cod)+1 ?>';
 function add_coodi(no){
   
      $(".showcod"+no).after('<div style="padding:15px 0px" class="row showcod'+ noc +' removecla'+ noc +'"><input type="hidden" name="nos360[]" value="'+ noc +'"><div class="col-sm-4"> X : <input type="number" required step="0.00000001" name="xval'+ noc +'" style="width:20%"> Y : <input type="number" required step="0.00000001" name="yval'+ noc +'" style="width:20%"> Z : <input type="number" required step="0.00000001" name="zval'+ noc +'" style="width:20%"></div><div class="col-sm-3"><textarea required style="width: 1200px;" name="coordinate_360_info'+ noc +'" class="form-control" placeholder="Info text"></textarea></div> <div class="col-sm-2"><input type="text" class="form-control" name="product_name'+ noc +'" placeholder="Product Name"></div><div class="col-md-3"> <label for="inputName1" class="control-label">Images</label> <input type="file" style="width:247px" name="image'+ noc +'[]" class="form-control" id="inputName1" multiple accept="image/x-png,image/gif,image/jpeg" / > </div> <div id="education_fields'+ noc +'"> <div class="row"> <div class="col-md-4"> <label for="inputName1" class="control-label">3D Modals</label> <input type="file" style="width:247px" name="3dmodals'+ noc +'" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <label for="inputName1" class="control-label">Modals Color</label> <input type="color" style="width:247px" name="modals_color'+ noc +'" class="form-control" id="inputName1"  / > </div> <div class="col-md-4"> <button style="margin: 30px 21px; float: left;" class="btn btn-success" type="button" onclick="education_fields('+ noc +');">+</button> </div> </div> </div>  <div class="col-sm-12" style="text-align:right"><button class="btn btn-danger" type="button" onclick="remove_education_fields2('+ noc +');"> Remove</button></div></div>'); 
