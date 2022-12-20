@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="row">
    
     <div class="col-md-12">
-      <a href="<?php echo site_url();?>admin/companies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+      <a href="<?php echo site_url();?>admin/FurnitureCompanies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
       <div class="card-box">
             <h4 class="header-title m-t-0 m-b-30"><?php echo $this->lang->line('basic_info'); ?></h4>
             <?php if ($this->session->flashdata('updateerror') != '') { 
@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $attributes = array('class' => 'form-horizontal', 'id' => '', 'enctype' => 'multipart/form-data' );
               $hidden = array('is_submit' => 1);
               $parsle = 'data-parsley-validate novalidate';
-              echo form_open_multipart('admin/companies/companyUpdate', $attributes, $hidden);
+              echo form_open_multipart('admin/FurnitureCompanies/companyUpdate', $attributes, $hidden);
               //echo "<pre>";print_r($userinfo);
             ?>
                 <div class="row">
@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option value="">Select Location</option>
                         <?php foreach ($locations as $key => $value) {
                           ?>
-                            <option value="<?php echo $value["location"]; ?>" <?php if($value["location"]==$companyinfo[0]['id']){ ?> selected <?php } ?> ><?php echo $value["location"]; ?></option>
+                            <option value="<?php echo $value["id"]; ?>" <?php if($value["id"]==$companyinfo[0]['location']){ ?> selected <?php } ?> ><?php echo $value["location"]; ?></option>
                           <?php
                         } ?>
                       </select>

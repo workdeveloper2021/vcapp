@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="row">
    
     <div class="col-md-12">
-      <a href="<?php echo site_url();?>admin/companies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+      <a href="<?php echo site_url();?>admin/FurnitureCompanies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
       <div class="card-box">
             <h4 class="header-title m-t-0 m-b-30"><?php echo $this->lang->line('basic_info'); ?></h4>
             <?php if ($this->session->flashdata('updateerror') != '') { 
@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $attributes = array('class' => 'form-horizontal', 'id' => '', 'enctype' => 'multipart/form-data' );
               $hidden = array('is_submit' => 1);
               $parsle = 'data-parsley-validate novalidate';
-              echo form_open_multipart('admin/showrooms/showroomUpdate', $attributes, $hidden);
+              echo form_open_multipart('admin/FurnitureShowrooms/showroomUpdate', $attributes, $hidden);
               //echo "<pre>";print_r($userinfo);
             ?>
                 <div class="row">
@@ -80,78 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br><br>
 
 
-                <div class="row">
-                   <div class="form-group">
-                    <div class="col-sm-12">
-                      <label for="inputName1" class="col-sm-3 control-label"><?php echo $this->lang->line('tb_last_showroom_img_360'); ?></label>
-                      <img src="<?php echo site_url().'uploads/showroom_media/'. $showroominfo[0]['img_360']; ?>" width="300">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                   <div class="form-group">
-                    <div class="col-sm-12">
-                      <label for="inputName1" class="col-sm-3 control-label"><?php echo $this->lang->line('tb_showroom_img_360'); ?></label>
-                      <input  type="file" name="update360pic" class="form-control" id="inputName1" accept="image/x-png,image/gif,image/jpeg" / >
-                      <input type="hidden" name="old360pic" value="<?php echo $showroominfo[0]['img_360']; ?>">
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <label for="inputName1" class="control-label">360 Image Co-ordinates & Details</label>
-                <div id="file_div3">
-
-                  <?php
-                      if(!empty($img_360_coordinates)){
-                        foreach ($img_360_coordinates as $key => $value) {
-
-                          ?>
-
-
-                             <div class="row">
-                                <div class="col-sm-4">
-                                    X : <input type="number" step="0.00000001" value="<?php echo $value['xval'] ?>" name="xval[]" style="width:20%">
-                                    Y : <input type="number" step="0.00000001" value="<?php echo $value['yval'] ?>" name="yval[]" style="width:20%">
-                                    Z : <input type="number" step="0.00000001" value="<?php echo $value['zval'] ?>" name="zval[]" style="width:20%">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <textarea style="width: 1200px;" name="coordinate_360_info[]" class="form-control" placeholder="Info text"><?php echo $value['info'] ?></textarea>
-                                </div>
-                                <input type='button' class='btn btn-danger' style="height: min-content;"  value='REMOVE' onclick='removeCoordinate("<?php echo encode($value['id']) ?>");'>
-                            </div>
-
-
-                          <?php
-
-                        }
-
-                      }
-                  ?>
-
-
-                   
-                   <div class="row">
-                      <div class="col-sm-4">
-                          X : <input type="number" step="0.00000001"  name="xval[]" style="width:20%">
-                          Y : <input type="number" step="0.00000001"  name="yval[]" style="width:20%">
-                          Z : <input type="number" step="0.00000001"  name="zval[]" style="width:20%">
-                      </div>
-
-                      <div class="col-sm-4">
-                          <textarea style="width: 1200px;" name="coordinate_360_info[]" class="form-control" placeholder="Info text"></textarea>
-                      </div>
-                      <br>
-                    <input type="button" class="btn btn-success" style="height: min-content;" onclick="add_file3();" value="Add More Co-ordinates">
-                  </div><br>
-
-                </div>
-
-                <br><br>                
-
+            
 
                 
                   <div class="form-group">

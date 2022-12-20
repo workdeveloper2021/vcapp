@@ -68,10 +68,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      
                       <input type="file" style="width:247px" name="update360pic"  class="form-control" id="inputName1"  accept="image/x-png,image/gif,image/jpeg" / >
                       <br>
-                      <?php
-                      $image360 = $this->db->select('*')->where(array('showroom_id'=>$data['showroom_id']))->get('showroom_360_image')->row_array(); 
-                      ?>
-                      <img src="<?= site_url()?>uploads/showroom_media/<?= $image360['image360']?>" style="width:50px; height: 50px;">
+                     
+                      <img src="<?= site_url()?>uploads/showroom_media/<?= $data['image360']?>" style="width:50px; height: 50px;">
                     <br><br>
 
                     </div>
@@ -85,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <br>
                     </div>
                     <?php 
-                       $cod = $this->db->where('image360_id' ,$data['id'])->get('product')->result_array();           
+                       $cod = $this->db->where('image360_id' ,$data['id'])->get('furiture_product')->result_array();        
                     ?>
                       <div class="col-md-12">
                        <div class="row showcod<?= count($product)+1 ?>">
@@ -108,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <input type="hidden" name="oldimg0" value="<?= $cod[0]['image'] ?>">
                           </div>
                           <?php 
-                            $modal2 = $this->db->where('img360_id' ,$cod[0]['id'])->get('showroom_3d_models')->result_array();
+                            $modal2 = $this->db->where('img360_id' ,$cod[0]['id'])->get('furitureshowroom_3d_models')->result_array();
                            ?>
                           
                            <?php if(!empty($modal2)){ ?>

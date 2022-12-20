@@ -65,7 +65,7 @@ class FurnitureCompanies extends My_Controller {
             $actionContent = '';
             foreach($getRecordListing as $recordData) {
                     $login_user_id = encode($recordData->id);
-                    $profile_url = base_url('admin/companies/companyprofile/').$login_user_id;                    
+                    $profile_url = base_url('admin/FurnitureCompanies/companyprofile/').$login_user_id;                    
                     $companyshowrooms = base_url('admin/FurnitureShowrooms/companyshowrooms/').$login_user_id;                    
                     $companyproducts = base_url('admin/products/companyProducts/').$login_user_id;                    
                     $companyreatilers = base_url('admin/retailers/companyRetailers/').$login_user_id;                    
@@ -174,7 +174,7 @@ class FurnitureCompanies extends My_Controller {
         if(!empty($user_id) && !empty($uid)){
 
                 $where = "id ='".$uid."'";
-                $userdata=$this->dynamic_model->getdatafromtable('manage_company_list',$where); 
+                $userdata=$this->dynamic_model->getdatafromtable('manage_company_furniture',$where); 
                 $where = "status ='Active'";
                 $locations=$this->dynamic_model->getdatafromtable('manage_comapny_location',$where); 
 
@@ -183,7 +183,7 @@ class FurnitureCompanies extends My_Controller {
             $header['title'] = $this->lang->line('btn_update_details');
             $this->admintemplates('furnitureCompanies/company-update', $loguserinfo, $header);
         } else{
-            redirect(base_url('admin/companies'));
+            redirect(base_url('admin/companyprofile'));
         }
     }
 
@@ -214,7 +214,7 @@ class FurnitureCompanies extends My_Controller {
             if ($this->form_validation->run() == FALSE){
                 $this->session->set_flashdata('updateclass', 'danger');
                 $this->session->set_flashdata('updateerror', get_form_error($this->form_validation->error_array()));
-                redirect(site_url().'admin/companies/companyprofile/'.encode($updateid));
+                redirect(site_url().'admin/FurnitureCompanies/companyprofile/'.encode($updateid));
             } else {
                 $updatedata = array();
                 $userid = $updateid;
@@ -236,14 +236,14 @@ class FurnitureCompanies extends My_Controller {
                     if(!in_array($file_ext, $allowedVidExts)){
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  $this->lang->line('file_required'));
-                        redirect(site_url().'admin/companies/companyprofile/'.encode($updateid)); 
+                        redirect(site_url().'admin/FurnitureCompanies/companyprofile/'.encode($updateid)); 
                      
                     }
                     $vid_name = $this->dynamic_model->fileupload('updatevideo', 'uploads/company_media', 'Video');
                     if (empty($vid_name)) {
                         $this->session->set_flashdata('updateclass', 'danger');
                         $this->session->set_flashdata('updateerror',  'Error in uploading video');
-                        redirect(site_url().'admin/companies/companyprofile/'.encode($updateid)); 
+                        redirect(site_url().'admin/FurnitureCompanies/companyprofile/'.encode($updateid)); 
                     }
                 } else {
                     $vid_name = $this->input->post('oldvid');
@@ -253,15 +253,15 @@ class FurnitureCompanies extends My_Controller {
                 $updatedata['location'] = $updatelocation;
                 $updatedata['info'] = $updateinfo;
                 $updatedata['video_url'] = $vid_name;
-                $this->dynamic_model->updatedata('manage_company_list', $updatedata, $userid); 
+                $this->dynamic_model->updatedata('manage_company_furniture', $updatedata, $userid); 
                 $this->session->set_flashdata('updateclass', 'success');
                 $this->session->set_flashdata('updateerror', $this->lang->line('company_update'));
-                redirect(site_url().'admin/companies/companyprofile/'.encode($updateid));  
+                redirect(site_url().'admin/FurnitureCompanies/companyprofile/'.encode($updateid));  
             }           
         } else {
              $this->session->set_flashdata('updateclass', 'danger');
              $this->session->set_flashdata('updateerror', 'SomeProble in Server. Please Try Again');
-            redirect(site_url().'admin/companies/companyprofile/'.encode($updateid));                    
+            redirect(site_url().'admin/FurnitureCompanies/companyprofile/'.encode($updateid));                    
         }     
     }
 
