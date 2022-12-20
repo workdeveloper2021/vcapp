@@ -949,7 +949,7 @@ class FurnitureShowrooms extends My_Controller {
                 if ($this->form_validation->run() == FALSE){
                     $this->session->set_flashdata('updateclass', 'danger');
                     $this->session->set_flashdata('updateerror', get_form_error($this->form_validation->error_array()));
-                    redirect(site_url().'admin/showrooms/addShowrooms/'.$cid);
+                    redirect(site_url().'admin/FurnitureShowrooms/addShowrooms/'.$cid);
                 } else {
                     $updatedata = array();
     
@@ -996,10 +996,10 @@ class FurnitureShowrooms extends My_Controller {
                     $updatedata['description'] = $description;
                     $updatedata['retaileremail'] = $retaileremail;
                     $updatedata['retailer1'] = $retailer; 
-                    $this->dynamic_model->updatedata('showroom_360_image', $updatedata,$comid);
+                    $this->dynamic_model->updatedata('showroom_furniuture360_image', $updatedata,$comid);
     
                      if(!empty($nos360)){
-                    $this->dynamic_model->deletedata('product', array('image360_id'=>$comid)); 
+                    $this->dynamic_model->deletedata('furiture_product', array('image360_id'=>$comid)); 
                 
                             foreach ($nos360 as $key => $xvalue) {
                             // $ddt = $_POST['codeno'.$xvalue];
@@ -1036,7 +1036,7 @@ class FurnitureShowrooms extends My_Controller {
                                 $updatedata['image'] = $img12;
                                 $updatedata['created_at'] = time();
                                 
-                                $colorId = $this->dynamic_model->insertdata('product', $updatedata); 
+                                $colorId = $this->dynamic_model->insertdata('furiture_product', $updatedata); 
                                 
                                 $updatedata = array();
                                
@@ -1059,7 +1059,7 @@ class FurnitureShowrooms extends My_Controller {
                                           }else{
                                               $modals = $_POST['oldmodal'.$xvalue][$key];
                                           }
-                                       $this->dynamic_model->insertdata('showroom_3d_models', array('modals3d'=>$modals,'color'=>$_POST['modals_color'.$xvalue][$key],'img360_id' =>$colorId)); 
+                                       $this->dynamic_model->insertdata('furitureshowroom_3d_models', array('modals3d'=>$modals,'color'=>$_POST['modals_color'.$xvalue][$key],'img360_id' =>$colorId)); 
                                                
                                     }
                                 }
