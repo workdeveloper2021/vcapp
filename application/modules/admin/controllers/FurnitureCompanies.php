@@ -181,7 +181,7 @@ class FurnitureCompanies extends My_Controller {
             $loguserinfo['companyinfo'] = $userdata;
             $loguserinfo['locations'] = $locations;
             $header['title'] = $this->lang->line('btn_update_details');
-            $this->admintemplates('FurnitureCompanies/company-update', $loguserinfo, $header);
+            $this->admintemplates('furniturecompanies/company-update', $loguserinfo, $header);
         } else{
             redirect(base_url('admin/companyprofile'));
         }
@@ -194,7 +194,7 @@ class FurnitureCompanies extends My_Controller {
 
             $loguserinfo['locations'] = $locations;
             $header['title'] = $this->lang->line('title_add_company');
-            $this->admintemplates('Furniturecompanies/company-add', $loguserinfo, $header);
+            $this->admintemplates('furniturecompanies/company-add', $loguserinfo, $header);
     }
 
     /* User Profile update by admin */
