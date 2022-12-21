@@ -649,6 +649,7 @@ class FurnitureShowrooms extends My_Controller {
         // manage_showroom_furiture
 
             $loguserinfo['cid'] = $cid;
+            $loguserinfo['image360'] =$this->db->where('showroom_id',decode($cid))->get('showroom_furniuture360_image')->result_array();
             $header['title'] = $this->lang->line('title_add_360image');
             $this->admintemplates('furnitureshowrooms/images-add', $loguserinfo, $header);
     }
@@ -728,6 +729,10 @@ class FurnitureShowrooms extends My_Controller {
                 $updatedata['reatilerimage'] = $retailer2;
                 $updatedata['image360'] = $updateuserpic;
                 $updatedata['thumbnail'] = $thumbnail;
+                $updatedata['arrow_image360_id'] = $arrow_image360_id;
+                $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
+                $updatedata['arrow_image360_yval'] = $arrow_image360_yval;
+                $updatedata['arrow_image360_zval'] = $arrow_image360_zval;
                 $imgid = $this->dynamic_model->insertdata('showroom_furniuture360_image', $updatedata);
                  if(!empty($nos360)){
                         foreach ($nos360 as $key => $xvalue) {
@@ -920,8 +925,9 @@ class FurnitureShowrooms extends My_Controller {
                 $where2 = "id ='".$uid."'";
             $loguserinfo['cid'] = $user_id;
             $header['title'] = $this->lang->line('title_add_360image');
+            $data['data'] = $this->db->select('*')->where($where2)->get('showroom_furniuture360_image')->row_array();
 
-               $data['data'] = $this->db->select('*')->where($where2)->get('showroom_furniuture360_image')->row_array();
+            $data['image360'] =$this->db->where('showroom_id',$data['data']['showroom_id'])->get('showroom_furniuture360_image')->result_array(); 
 
                $this->admintemplates('furnitureshowrooms/images-edit',$data,$loguserinfo, $header);
             }
@@ -996,6 +1002,10 @@ class FurnitureShowrooms extends My_Controller {
                     $updatedata['description'] = $description;
                     $updatedata['retaileremail'] = $retaileremail;
                     $updatedata['retailer1'] = $retailer; 
+                    $updatedata['arrow_image360_id'] = $arrow_image360_id;
+                    $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
+                    $updatedata['arrow_image360_yval'] = $arrow_image360_yval;
+                    $updatedata['arrow_image360_zval'] = $arrow_image360_zval;
                     $this->dynamic_model->updatedata('showroom_furniuture360_image', $updatedata,$comid);
     
                      if(!empty($nos360)){

@@ -61,6 +61,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                       <input type="hidden" name="showroom_id" value="<?= $data['showroom_id']?>">
                   </div><br>
+
+                  <div class="row">
+                  
+                     <div class="col-md-6">
+                      <label for="inputName1" >Arrow Image 360 </label><br>
+                       <select class="form-control" name="arrow_image360_id" >
+                         <option value="">Select 360 Image</option>
+                         <?php
+                           if(!empty($image360)){
+                            foreach ($image360 as $key => $value) {
+                         ?>
+
+                         
+                         <option <?php if ($value['id']  == $data['arrow_image360_id']): ?> selected
+                           
+                         <?php endif ?>  value="<?=  $value['id'] ?>"><?=  $value['description'] ?></option>
+
+                         <?php   } } ?>
+                       </select>                      
+                       <br><br>
+                    </div>
+                     <div class="col-md-6">
+                      <label for="inputName1" >Image 360 Arrow Coordinate </label><br>
+                        X : <input type="number" step="0.00000001" value="<?= $data['arrow_image360_xval']?>"  name="arrow_image360_xval" style="width:20%" >
+                        Y : <input type="number" step="0.00000001" value="<?= $data['arrow_image360_yval']?>"  name="arrow_image360_yval" style="width:20%" >
+                        Z : <input type="number" step="0.00000001"  value="<?= $data['arrow_image360_zval']?>" name="arrow_image360_zval" style="width:20%" >
+                      <br><br>
+                    </div>
+                </div>  
                 <div class="row">
                     <div class="col-md-6">
                       <label for="inputName1" class="col-sm-3 control-label"><?php echo $this->lang->line('tb_showroom_img_360'); ?></label>

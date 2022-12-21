@@ -649,6 +649,9 @@ class Showrooms extends My_Controller {
         // manage_showroom_list
 
             $loguserinfo['cid'] = $cid;
+            $loguserinfo['image360'] =$this->db->where('showroom_id',decode($cid))->get('showroom_360_image')->result_array();
+            
+            // print_r(decode($cid)); die;
             $header['title'] = $this->lang->line('title_add_360image');
             $this->admintemplates('showrooms/images-add', $loguserinfo, $header);
     }
@@ -730,6 +733,10 @@ class Showrooms extends My_Controller {
                 $updatedata['reatilerimage'] = $retailer2;
                 $updatedata['image360'] = $updateuserpic;
                 $updatedata['thumbnail'] = $thumbnail;
+                $updatedata['arrow_image360_id'] = $arrow_image360_id;
+                $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
+                $updatedata['arrow_image360_yval'] = $arrow_image360_yval;
+                $updatedata['arrow_image360_zval'] = $arrow_image360_zval;
                 $imgid = $this->dynamic_model->insertdata('showroom_360_image', $updatedata);
                  if(!empty($nos360)){
                         foreach ($nos360 as $key => $xvalue) {
@@ -871,6 +878,10 @@ class Showrooms extends My_Controller {
                 $updatedata['description'] = $description;
                 $updatedata['retaileremail'] = $retaileremail;
                 $updatedata['retailer1'] = $retailer; 
+                $updatedata['arrow_image360_id'] = $arrow_image360_id;
+                $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
+                $updatedata['arrow_image360_yval'] = $arrow_image360_yval;
+                $updatedata['arrow_image360_zval'] = $arrow_image360_zval;
                 $this->dynamic_model->updatedata('showroom_360_image', $updatedata,$comid);
 
                  if(!empty($nos360)){
@@ -1068,6 +1079,7 @@ class Showrooms extends My_Controller {
                $header['title'] = $this->lang->line('title_add_360image');
 
                $data['data'] = $this->db->select('*')->where($where2)->get('showroom_360_image')->row_array();
+               $data['image360'] =$this->db->where('showroom_id',$data['data']['showroom_id'])->get('showroom_360_image')->result_array(); 
 
                $this->admintemplates('showrooms/images-edit',$data,$loguserinfo, $header);
             }
