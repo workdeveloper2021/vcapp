@@ -725,7 +725,8 @@ class Showrooms extends My_Controller {
                
                
 
-
+                
+                $updatedata['title'] = $title;
                 $updatedata['showroom_id'] = $comid;
                 $updatedata['description'] = $description;
                 $updatedata['retaileremail'] = $retaileremail;
@@ -733,6 +734,7 @@ class Showrooms extends My_Controller {
                 $updatedata['reatilerimage'] = $retailer2;
                 $updatedata['image360'] = $updateuserpic;
                 $updatedata['thumbnail'] = $thumbnail;
+                $updatedata['arrow_title'] = $arrow_title;
                 $updatedata['arrow_image360_id'] = $arrow_image360_id;
                 $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
                 $updatedata['arrow_image360_yval'] = $arrow_image360_yval;
@@ -873,11 +875,13 @@ class Showrooms extends My_Controller {
                
                 
 
-
+               
+                $updatedata['title'] = $title;
                 $updatedata['showroom_id'] = $showroom_id;
                 $updatedata['description'] = $description;
                 $updatedata['retaileremail'] = $retaileremail;
                 $updatedata['retailer1'] = $retailer; 
+                $updatedata['arrow_title'] = $arrow_title;
                 $updatedata['arrow_image360_id'] = $arrow_image360_id;
                 $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
                 $updatedata['arrow_image360_yval'] = $arrow_image360_yval;

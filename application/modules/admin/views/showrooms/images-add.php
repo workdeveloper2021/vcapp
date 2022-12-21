@@ -26,6 +26,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               //echo "<pre>";print_r($userinfo);
             ?>
                 <div class="row">
+                <div class="col-md-12">
+                    <label for="inputName1" class="col-sm-3 control-label">Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Write Title" >
+                    <!-- <textarea class="form-control" name="title" placeholder="Write Title"></textarea> -->
+                  </div>
                   <div class="col-md-12">
                     <label for="inputName1" class="col-sm-3 control-label">Descripition</label>
                     <textarea class="form-control" name="description" placeholder="Write Descripition"></textarea>
@@ -54,8 +59,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
                   <div class="row">
-                  
-                     <div class="col-md-6">
+                  <div class="col-md-3">
+                    <label for="inputName1" >Arrow Title</label><br>
+                    <input class="form-control" name="arrow_title" type="text" placeholder="arrow title" />
+                  </div>
+                     <div class="col-md-3">
                       <label for="inputName1" >Arrow Image 360 </label><br>
                        <select class="form-control" name="arrow_image360_id" >
                          <option value="">Select 360 Image</option>

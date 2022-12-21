@@ -721,7 +721,7 @@ class FurnitureShowrooms extends My_Controller {
                
                
 
-
+                $updatedata['title'] = $title;
                 $updatedata['showroom_id'] = $comid;
                 $updatedata['description'] = $description;
                 $updatedata['retaileremail'] = $retaileremail;
@@ -729,6 +729,7 @@ class FurnitureShowrooms extends My_Controller {
                 $updatedata['reatilerimage'] = $retailer2;
                 $updatedata['image360'] = $updateuserpic;
                 $updatedata['thumbnail'] = $thumbnail;
+                $updatedata['arrow_title'] = $arrow_title;
                 $updatedata['arrow_image360_id'] = $arrow_image360_id;
                 $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
                 $updatedata['arrow_image360_yval'] = $arrow_image360_yval;
@@ -1000,9 +1001,11 @@ class FurnitureShowrooms extends My_Controller {
     
                     $updatedata['showroom_id'] = $showroom_id;
                     $updatedata['description'] = $description;
+                    $updatedata['title'] = $title;
                     $updatedata['retaileremail'] = $retaileremail;
                     $updatedata['retailer1'] = $retailer; 
                     $updatedata['arrow_image360_id'] = $arrow_image360_id;
+                    $updatedata['arrow_title'] = $arrow_title;
                     $updatedata['arrow_image360_xval'] = $arrow_image360_xval;
                     $updatedata['arrow_image360_yval'] = $arrow_image360_yval;
                     $updatedata['arrow_image360_zval'] = $arrow_image360_zval;
