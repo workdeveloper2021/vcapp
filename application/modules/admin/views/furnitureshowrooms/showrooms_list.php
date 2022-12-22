@@ -5,7 +5,7 @@
   }
 </style>
 
-
+ 
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!-- <div class="backlayer-watermark">
     <img src="<?php echo base_url(); ?>/assets/images/watermark_bg.png" class="img-fluid">
@@ -17,7 +17,7 @@
      <div class="row">
         <div class="col-md-6">
 
-         <a href="<?php echo site_url();?>admin/FurnitureShowrooms" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+         <a href="<?php echo site_url();?>admin/FurnitureCompanies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
 
          <input type="hidden" name="cid" id="cid" value="<?php echo $cid; ?>" class="getIds">
 
