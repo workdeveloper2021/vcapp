@@ -185,8 +185,7 @@ class Showrooms extends My_Controller {
                 $where = "showroom_id ='".$uid."' && is_showrooms_coordinates='1'";
                 $userdata2=$this->dynamic_model->getdatafromtable('product',$where); 
                 $loguserinfo['product'] = $userdata2;
-
-
+                  $loguserinfo['cid'] = encode($userdata[0]['company_id']);
             $header['title'] = $this->lang->line('btn_update_details');
             $this->admintemplates('showrooms/showroom-update', $loguserinfo, $header);
         } else{
@@ -635,6 +634,7 @@ class Showrooms extends My_Controller {
         $uid =  decode($user_id); 
         if(!empty($user_id) && !empty($uid)){
             $loguserinfo['cid'] = $uid;
+            $loguserinfo['company'] = $this->db->where('id',$uid)->get('manage_showroom_list')->row()->company_id;
             $header['title'] = $this->lang->line('images_360_list');
             $this->admintemplates('showrooms/images-list', $loguserinfo, $header);
         } else{

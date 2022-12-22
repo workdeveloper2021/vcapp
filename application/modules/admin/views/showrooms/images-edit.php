@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="row">
    
     <div class="col-md-12">
-      <a href="<?php echo site_url();?>admin/showrooms/companyshowrooms/<?php echo $cid;?>" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+      <a href="<?php echo site_url();?>admin/showrooms/image360list/<?php echo encode($data['showroom_id']);?>" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
       <div class="card-box">
             <!-- <h4 class="header-title m-t-0 m-b-30"><?php echo $this->lang->line('basic_info'); ?></h4> -->
             <?php if ($this->session->flashdata('updateerror') != '') { 

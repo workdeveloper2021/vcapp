@@ -118,9 +118,9 @@ class Companies extends My_Controller {
                     $actionContent = '<div class="row">';
                     // if(check_permission(EDIT,"user_list")==1){ 
                     $actionContent .='<a href="'.$profile_url.'" title="Edit" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-edit"></i></a> '; 
-                    $actionContent .='&nbsp; <a href="'.$companyshowrooms.'" title="Companys Showrooms" class="btn btn-info">Manage Showrooms</a> '; 
-                    $actionContent .='&nbsp; <a href="'.$companyproducts.'" title="Companys Products" class="btn btn-info">Manage Products</a> '; 
-                    $actionContent .='&nbsp; <a href="'.$companyreatilers.'" title="Companys Products" class="btn btn-info">Retailers</a> '; 
+                    $actionContent .='&nbsp; <a style="margin-top:5px" href="'.$companyshowrooms.'" title="Companys Showrooms" class="btn btn-info">Manage Showrooms</a> '; 
+                    // $actionContent .='&nbsp; <a href="'.$companyproducts.'" title="Companys Products" class="btn btn-info">Manage Products</a> '; 
+                    // $actionContent .='&nbsp; <a href="'.$companyreatilers.'" title="Companys Products" class="btn btn-info">Retailers</a> '; 
                     $actionContent .='</div> '; 
                      // }
                     $recordListing[$i][10]= $actionContent;

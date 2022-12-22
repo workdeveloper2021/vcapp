@@ -17,7 +17,7 @@
      <div class="row">
         <div class="col-md-6">
 
-         <a href="<?php echo site_url();?>admin/companies" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
+         <a href="<?php echo site_url();?>admin/showrooms/companyshowrooms/<?php echo encode($company); ?>" class="btn btn-back"><?php echo $this->lang->line('back_to_list_btn'); ?></a>  <br /><br />
 
          <input type="hidden" name="cid" id="cid" value="<?php echo $cid; ?>" class="getIds">
 

@@ -635,6 +635,7 @@ class FurnitureShowrooms extends My_Controller {
         $uid =  decode($user_id); 
         if(!empty($user_id) && !empty($uid)){
             $loguserinfo['cid'] = $uid;
+            $loguserinfo['company'] = $this->db->where('id',$uid)->get('manage_showroom_furiture')->row()->company_id;
             $header['title'] = $this->lang->line('images_360_list');
             $this->admintemplates('furnitureshowrooms/images-list', $loguserinfo, $header);
         } else{
