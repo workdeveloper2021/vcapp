@@ -129,10 +129,13 @@ class Showrooms extends My_Controller {
 
 
                     $profile_url = base_url('admin/showrooms/showroomprofile/').$login_user_id;
+                    $profile_delete = base_url('admin/showrooms/showroomdelete/').$login_user_id;
+                    
                     $image360 = base_url('admin/showrooms/image360list/').$login_user_id;                   
                     $actionContent = '';
                     // if(check_permission(EDIT,"user_list")==1){
-                    $actionContent .='<a href="'.$profile_url.'" title="Edit" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-edit"></i></a> '; 
+                    $actionContent .='<a href="'.$profile_url.'" title="Edit" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-edit"></i></a> ';
+                    $actionContent .='<a href="'.$profile_delete.'" title="Delete" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-trash" aria-hidden="true"></i></a>';  
                     $actionContent .='<a href="'. $image360 .'" title="Edit" class="btn btn-info">Manage 360images</a> '; 
                      // }
                     $recordListing[$i][9]= $actionContent;
@@ -191,6 +194,15 @@ class Showrooms extends My_Controller {
         } else{
             redirect(base_url('admin/companies'));
         }
+    }
+
+
+    public function showroomdelete($id){
+        $uid =  decode($id);
+        $this->dynamic_model->deletedata('manage_showroom_list',array('id'=> $uid));
+        $this->session->set_flashdata('updateclass', 'success');
+        $this->session->set_flashdata('updateerror', 'Showroom Delete Successfully');
+         redirect($_SERVER["HTTP_REFERER"]);       
     }
 
     public function addShowrooms($cid){

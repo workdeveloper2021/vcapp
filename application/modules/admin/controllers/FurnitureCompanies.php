@@ -30,22 +30,16 @@ class FurnitureCompanies extends My_Controller {
         if(!empty($order)){ 
 
             if($order[0]['column']==3){
-
                 $column_name = 'company_name';
             }else if($order[0]['column']==5){
-
                 $column_name = 'location';               
             }else if($order[0]['column']==6){
-
                 $column_name = 'info';               
             }else if($order[0]['column']==7){
-
                 $column_name = 'visits';               
             }else if($order[0]['column']==8){
-
                 $column_name = 'showroom_visits';               
             }else if($order[0]['column']==9){
-
                 $column_name = 'status';               
             }else{
                 $column_name = 'id';
@@ -65,7 +59,8 @@ class FurnitureCompanies extends My_Controller {
             $actionContent = '';
             foreach($getRecordListing as $recordData) {
                     $login_user_id = encode($recordData->id);
-                    $profile_url = base_url('admin/FurnitureCompanies/companyprofile/').$login_user_id;                    
+                    $profile_url = base_url('admin/FurnitureCompanies/companyprofile/').$login_user_id;
+                    $profile_delete = base_url('admin/FurnitureCompanies/companydelete/').$login_user_id;                    
                     $companyshowrooms = base_url('admin/FurnitureShowrooms/companyshowrooms/').$login_user_id;                    
                     $companyproducts = base_url('admin/products/companyProducts/').$login_user_id;                    
                     $companyreatilers = base_url('admin/retailers/companyRetailers/').$login_user_id;                    
@@ -93,7 +88,7 @@ class FurnitureCompanies extends My_Controller {
 
 
                     $recordListing[$i][5]= $recordData->company_location;
-                    $recordListing[$i][6]= $recordData->info;
+                    $recordListing[$i][6]= substr($recordData->info,0,500).'...';
 
                     $where = "company_id ='".$recordData->id."'";
                     $userdata=$this->dynamic_model->getdatafromtable('company_enter_count',$where); 
@@ -125,6 +120,7 @@ class FurnitureCompanies extends My_Controller {
                     $actionContent = '<div class="row">';
                     // if(check_permission(EDIT,"user_list")==1){ 
                     $actionContent .='<a href="'.$profile_url.'" title="Edit" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-edit"></i></a> '; 
+                    $actionContent .='<a href="'.$profile_delete.'" title="Delete" class="btn btn-icon waves-effect waves-light fa-new-grey m-b-5"><i class="fa fa-trash" aria-hidden="true"></i></a>'; 
                     $actionContent .='&nbsp; <a style="margin-top:5px"  href="'.$companyshowrooms.'" title="Companys Showrooms" class="btn btn-info">Manage Showrooms</a> '; 
                     // $actionContent .='&nbsp; <a href="'.$companyproducts.'" title="Companys Products" class="btn btn-info">Manage Products</a> '; 
                     $actionContent .='&nbsp; <a style="margin-top:5px"  href="'.$companyreatilers.'" title="Companys Products" class="btn btn-info">Retailers</a> '; 
@@ -185,6 +181,15 @@ class FurnitureCompanies extends My_Controller {
         } else{
             redirect(base_url('admin/companyprofile'));
         }
+    }
+
+
+    public function companydelete($id){
+        $uid =  decode($id);
+        $this->dynamic_model->deletedata('manage_company_furniture',array('id'=> $uid));
+        $this->session->set_flashdata('updateclass', 'success');
+        $this->session->set_flashdata('updateerror', 'Company Delete Successfully');
+         redirect($_SERVER["HTTP_REFERER"]);       
     }
 
     public function addCompany(){
