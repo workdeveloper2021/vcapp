@@ -79,7 +79,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
 
                 <br><br>
-                
+                <div class="row">
+                   <div class="form-group">
+                    <div class="col-sm-12">
+                      <label nowrap="" for="inputName1" class="col-sm-3 control-label">Status</label>
+                      <select class="form-control" name="info_status" id="info_status">
+                        <option value="0">Hide</option>
+                        <option value="1" selected>Show</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br><br>
                 
                   <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-12">

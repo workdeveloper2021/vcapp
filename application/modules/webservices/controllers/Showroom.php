@@ -139,6 +139,36 @@ class Showroom extends CI_Controller
 		echo json_encode($arg);
 	}
 
+
+	public function get_360image_byid($id)
+	{
+		$arg = array();
+		$data = $this->db->where('id',$id)->get('showroom_360_image')->row_array();
+		$image = $this->db->where('image360_id',$data['id'])->get('product')->result_array();
+		if(!empty($image)){
+			foreach ($image as $kee => $img) {
+					$image[$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('showroom_3d_models')->result_array();
+			}
+		}
+		$data['coordinates'] =$image;
+
+		if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "images listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
 	 
 	public function get_360image($id)
 	{
@@ -188,6 +218,36 @@ class Showroom extends CI_Controller
         		$data[$key]['coordinates'] =$image;
         	}
         }
+		if(!$data){
+			$arg['status'] = 0;
+			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;
+			$arg['error_line'] = __line__;
+			$arg['message'] = $this->lang->line('record_not_found');
+			$arg['data'] = array();
+		}else{
+			$arg['status'] = 1;
+			$arg['error_code'] = REST_Controller::HTTP_OK;
+			$arg['error_line'] = __line__;
+			$arg['data'] = $data;
+			$arg['message'] = "images listed successfully.";
+		}
+
+		echo json_encode($arg);
+	}
+
+
+	public function get_furniture_360image_byid($id)
+	{
+		$arg = array();
+		$data = $this->db->where('id',$id)->get('showroom_furniuture360_image')->row_array();
+        
+		$image = $this->db->where('image360_id',$data['id'])->get('furiture_product')->result_array();
+		if(!empty($image)){
+			foreach ($image as $kee => $img) {
+					$image[$kee]['models'] = $this->db->where('img360_id',$img['id'])->get('furitureshowroom_3d_models')->result_array();
+			}
+		}
+		$data['coordinates'] =$image;
 		if(!$data){
 			$arg['status'] = 0;
 			$arg['error_code'] = REST_Controller::HTTP_NOT_FOUND;

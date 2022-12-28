@@ -346,6 +346,7 @@ class Showrooms extends My_Controller {
                 $updatedata['img_360'] = $img_360_name;
                 $updatedata['video_url'] = $vid_name;
                 $updatedata['play_video_url'] = $vid_play_name;
+                $updatedata['info_status'] = $this->input->post('info_status');
                 $this->dynamic_model->updatedata('manage_showroom_list', $updatedata, $userid); 
                 $this->session->set_flashdata('updateclass', 'success');
                 $this->session->set_flashdata('updateerror', $this->lang->line('showroom_update'));
@@ -440,6 +441,7 @@ class Showrooms extends My_Controller {
                 // $updatedata['img_360'] = $update360pic;
                 $updatedata['video_url'] = $vid_name;
                 $updatedata['play_video_url'] = $vid_play;
+                $updatedata['info_status'] = $this->input->post('info_status');
 
                 $showroomId = $this->dynamic_model->insertdata('manage_showroom_list', $updatedata);
                
