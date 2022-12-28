@@ -43,6 +43,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <textarea name="information" class="form-control" id="inputName" value="" required></textarea>
                     </div>
                   </div>
+                   <div class="col-md-6 col-sm-6">
+                      <label nowrap="" for="inputName1" class="col-sm-6 control-label">Infor Hide/Show</label>
+                      <select class="form-control" name="info_status" id="info_status">
+                        <option value="0">Hide</option>
+                        <option value="1" selected>Show</option>
+                      </select>
+                    </div>
                 </div>
                 <br><br>
 
@@ -79,17 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
 
                 <br><br>
-                <div class="row">
-                    <div class="col-md-3 col-sm-3">
-                      <label nowrap="" for="inputName1" class="col-sm-3 control-label">Status</label>
-                      <select class="form-control" name="info_status" id="info_status">
-                        <option value="0">Hide</option>
-                        <option value="1" selected>Show</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <br><br>
+              
                 
                 
                   <div class="form-group">

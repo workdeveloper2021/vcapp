@@ -33,6 +33,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <input type="text" name="updatename" class="form-control" id="inputName" value="<?php echo $showroominfo[0]['showroom_name'] ? $showroominfo[0]['showroom_name'] : ''; ?>" required>
                     </div>
                   </div>
+                    <div class="col-md-6 col-sm-6">
+                      <label nowrap="" for="inputName1" class="col-sm-6 control-label">Info Hide/Show</label>
+                      <select class="form-control" name="info_status" id="info_status">
+                        <option value="0" <?= $showroominfo[0]['info_status'] == 0 ? 'selected':'' ?>>Hide</option>
+                        <option value="1" <?= $showroominfo[0]['info_status'] == 1 ? 'selected':'' ?>>Show</option>
+                      </select>
+                    </div>
                 </div>
 
                 <br><br>
@@ -78,20 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
 
                 <br><br>
-                 <div class="row">
-                   <div class="form-group">
-                    <div class="col-sm-12">
-                      <label nowrap="" for="inputName1" class="col-sm-3 control-label">Status</label>
-                      <select class="form-control" name="info_status" id="info_status">
-                        <option value="0" <?= $showroominfo[0]['info_status'] == 0 ? 'selected':'' ?>>Hide</option>
-                        <option value="1" <?= $showroominfo[0]['info_status'] == 1 ? 'selected':'' ?>>Show</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <br><br>
-           
-
+                
 
                 
                   <div class="form-group">
