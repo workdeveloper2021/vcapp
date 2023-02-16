@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+ 
 class Categories extends My_Controller {
     private $login_user_id = null;
     public function __construct(){      
@@ -23,6 +23,9 @@ class Categories extends My_Controller {
 
         $where = "status ='Active'";
         $data['userdata']=$this->dynamic_model->getdatafromtable('manage_product_categories',$where); 
+
+        // $resutl = sendEmailCI("praveen.singh926@gmail.com", SITE_TITLE, 'testing', 'testing');
+        // print_r($resutl); die;
         $this->admintemplates('categories/category_list',$data, $header);
     }
 
