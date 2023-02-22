@@ -41,9 +41,9 @@ class Company_model extends CI_model{
 
 
 
-        $this->db->select('manage_company_list.*, manage_comapny_location.location as company_location');
+        $this->db->select('manage_company_list.*');
         $this->db->from('manage_company_list');
-        $this->db->join('manage_comapny_location','manage_comapny_location.id = manage_company_list.location'); 
+        // $this->db->join('manage_comapny_location','manage_comapny_location.id = manage_company_list.location'); 
         // $this->db->group_by('user_role.user_id'); 
         // $this->db->where('user.role_id ','3');
         if(!empty($orderby_name)){
@@ -52,7 +52,7 @@ class Company_model extends CI_model{
         //--------search text-box value start
          if(!empty($search['value'])){
             $search_info = trim($search['value']);
-            $this->db->where('(`company_name` LIKE "%'.$search_info.'%" OR `manage_comapny_location.location` LIKE "%'.$search_info.'%" OR `info` LIKE "%'.$search_info.'%" )',NUll);
+            $this->db->where('(`company_name` LIKE "%'.$search_info.'%" OR `location` LIKE "%'.$search_info.'%" OR `info` LIKE "%'.$search_info.'%" )',NUll);
         }
 
         //--------search text-box value end

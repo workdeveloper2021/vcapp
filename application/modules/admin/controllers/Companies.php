@@ -86,7 +86,7 @@ class Companies extends My_Controller {
                     $recordListing[$i][4]= $actionContent;
 
 
-                    $recordListing[$i][5]= $recordData->company_location;
+                    $recordListing[$i][5]= $recordData->location;
                     $recordListing[$i][6]= substr($recordData->info,0,100).'...';
 
                     $where = "company_id ='".$recordData->id."'";

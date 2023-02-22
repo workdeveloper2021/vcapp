@@ -1021,8 +1021,13 @@ class Showrooms extends My_Controller {
                         $user_pic = '';
                      }
                     $recordListing[$i][2]= '<img src="'.$user_pic.'" width="40" height="40">';
-                    $recordListing[$i][3]= $recordData->retailer1;
-                    $recordListing[$i][4]= $recordData->reatilerimage;
+                   if(!empty($recordData->thumbnail)){
+                        $tumnil = base_url('uploads/showroom_media/').$recordData->thumbnail;
+                     }else{
+                        $tumnil = '';
+                     }
+                    $recordListing[$i][3]= '<img src="'.$tumnil.'" width="40" height="40">';
+                    $recordListing[$i][4]= $recordData->retailer1;
                     if(!empty($recordData->reatilerimage)){
                         $re_pic = base_url('uploads/showroom_media/').$recordData->reatilerimage;
                      }else{
