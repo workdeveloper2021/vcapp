@@ -96,18 +96,29 @@ define('HTTP_NOT_MODIFIED', 304);
 
 
 // Email Functions 
-
 define('SITE_NAME', 'Virtual Catalogue');
-define('SITE_EMAIL', 'no-reply@consagous.co');
+// define('SITE_EMAIL', 'no-reply@consagous.co');
 define('PROTOCOL', 'smtp');       // mail, sendmail, smtp
-define('SMTP_HOST','smtp.gmail.com');   // your smtp host e.g. smtp.gmail.com
-define('SMTP_PORT','465');          // your smtp port e.g. 25, 587
-define('SMTP_CRYPTO','ssl');          // your smtp port e.g. 25, 587
-define('SMTP_USER','no-reply@consagous.co');		// your smtp user 
-define('SMTP_PASS','@Consagous@123@');  // your smtp password
+define('SMTP_HOST','smtp.googlemail.com');   // your smtp host e.g. smtp.gmail.com
+define('SMTP_PORT','587');          // your smtp port e.g. 25, 587
+define('SMTP_CRYPTO','tls');          // your smtp port e.g. 25, 587
+define('SMTP_USER','praveen.singh926@gmail.com');		// your smtp user 
+define('SMTP_PASS','uauqzlcwojnzcnpn');  // your smtp password
 define('MAIL_PATH','/usr/sbin/sendmail');
 define('AdminEmail','prathak.godawat@consagous.com');
-define('FROM_EMAIL','no-reply@consagous.com'); // your smtp user
+define('FROM_EMAIL','praveen.singh926@gmail.com'); // your smtp user
+
+// define('SITE_NAME', 'Virtual Catalogue');
+// define('SITE_EMAIL', 'no-reply@consagous.co');
+// define('PROTOCOL', 'smtp');       // mail, sendmail, smtp
+// define('SMTP_HOST','smtp.gmail.com');   // your smtp host e.g. smtp.gmail.com
+// define('SMTP_PORT','465');          // your smtp port e.g. 25, 587
+// define('SMTP_CRYPTO','ssl');          // your smtp port e.g. 25, 587
+// define('SMTP_USER','no-reply@consagous.co');		// your smtp user 
+// define('SMTP_PASS','@Consagous@123@');  // your smtp password
+// define('MAIL_PATH','/usr/sbin/sendmail');
+// define('AdminEmail','prathak.godawat@consagous.com');
+// define('FROM_EMAIL','no-reply@consagous.com'); // your smtp user
 
 
 

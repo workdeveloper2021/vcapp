@@ -13,9 +13,19 @@ class Companies extends My_Controller {
             $currentuser = getuserdetails();
             $this->login_user_id = $currentuser['id'];
         }
+
+        $this->load->helper(array(
+            'web_common_helper',
+            'notification_helper',
+            'stripe_helper'
+        ));
     }
             
     public function index() {
+
+
+        $result = sendEmailCI("praveen.singh926@gmail.com", SITE_TITLE, 'test', 'test message');
+        print_r($result); die;
         // check_permission(VIEW,"user_list",1);
         $header['title'] = $this->lang->line('company_list'); 
         $data['userdata']=$this->dynamic_model->getdatafromtable(TABLE_COMPANIES);       

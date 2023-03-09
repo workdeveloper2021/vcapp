@@ -952,8 +952,8 @@ class FurnitureShowrooms extends My_Controller {
 
         
         public function imageUpdateSubmit($cid){
-            // echo '<pre>';
-            // print_r($_POST); die;
+             // echo '<pre>';
+            // print_r($_FILES); die;
             $comid = decode($cid);
             // check_permission(EDIT,"user_list",1);
             extract($this->input->post());
@@ -1044,12 +1044,12 @@ class FurnitureShowrooms extends My_Controller {
                               }
                                
                            
-    
+     
                               $img12 = '';
                               if(!empty($images)){
                                  $img12 = implode(',', $images);   
                               }else{
-                                // $img12 = $_POST['oldimg'.$xvalue];  
+                                $img12 = $_POST['oldimg'.$xvalue];  
                               }
                              
                                 $updatedata = array();

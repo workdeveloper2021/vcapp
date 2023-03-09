@@ -1121,6 +1121,7 @@ if (!function_exists('sendEmailCI')) {
 			}
 		}
 		$result = $CI->email->send();
+
 		if ($result) {
 			return $result;
 		} else {

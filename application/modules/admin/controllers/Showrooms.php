@@ -925,7 +925,7 @@ class Showrooms extends My_Controller {
                           if(!empty($images)){
                              $img12 = implode(',', $images);   
                           }else{
-                            // $img12 = $_POST['oldimg'.$xvalue];  
+                            $img12 = $_POST['oldimg'.$xvalue];  
                           }
                          
                             $updatedata = array();
@@ -961,7 +961,7 @@ class Showrooms extends My_Controller {
                                             }    
                                         
                                       }else{
-                                          $modals = $_POST['oldmodal'.$xvalue][$key];
+                                          $modals = $_POST['oldmodal'.$xvalue];
                                       }
                                    $this->dynamic_model->insertdata('showroom_3d_models', array('modals3d'=>$modals,'color'=>$_POST['modals_color'.$xvalue][$key],'img360_id' =>$colorId)); 
                                            
